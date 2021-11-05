@@ -18,9 +18,9 @@
     However, determined that the time/scope of such work may not be optimal.
 	* Considered Processing as well, but decided against it due to the limited Sktechpad IDE
     and the learning curve in using its abstractions.
-  * Decided to pursue building/enhancing a game from Greenfoot. It was closer to using native
+	* Decided to pursue building/enhancing a game from Greenfoot. It was closer to using native
     Java, and already has a familiar dev environment from using BlueJ.
-  * Each of us chose a XP Core Value to evangelize for the team. I chose Communication, since
+	* Each of us chose a XP Core Value to evangelize for the team. I chose Communication, since
     I was already facilitating the cadence of conversations, encouraging collaboration among
     all of us.
 	* Resolved to determine candidate games to consider for our next sync, so we can finalize
