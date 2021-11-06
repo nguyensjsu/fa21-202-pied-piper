@@ -9,7 +9,7 @@
 * Hashmitha Katta
 
 ## Project Topic
-- The Topic of your team's project
+- Customized Space Shooter Arcade Game based on Greenfoot starter code [P-TYPE](https://www.greenfoot.org/scenarios/13388).
 
 ## Summary of Project
 - A summary of your team's project
