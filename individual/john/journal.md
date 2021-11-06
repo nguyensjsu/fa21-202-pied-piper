@@ -35,3 +35,14 @@
   there are only 2 levels. We could also potentially enhance the game dynamics with additional
   targets, patterns, effects, backgrounds, etc. Lastly, it may be good to provide a leaderboard.
 
+### 11/05/2021
+
+* Met with the team to decide on the Greenfoot game to use as starter code for our project.
+  Discussed each person's suggestion, trade-offs, and potential feature enhancements.
+* Demo'd my research into my suggestion, [P-TYPE](https://www.greenfoot.org/scenarios/13388),
+  the code structure of this game, the way I was able to use Intellij IDE to build the source
+  (while testing runtime using the Greenfoot IDE), and the potential to build on top of it.
+* Team made decision to go with my suggestion. We outlined the next set of goals we need to do,
+  namely, reviewing the code, identifying potential enhancements & patterns we might employ,
+  outlining User Stories and designating Tasks. We also created a Kanban board in Github
+  and named our project *Q-TYPE*. 
