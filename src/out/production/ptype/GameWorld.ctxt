@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=GameWorld
+comment1.params=
+comment1.target=GameWorld()
+comment10.params=b
+comment10.target=void\ showPlayer(boolean)
+comment2.params=
+comment2.target=void\ prepare()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ endGame()
+comment5.params=
+comment5.target=void\ startNewLevel()
+comment6.params=
+comment6.target=void\ takeLife()
+comment7.params=
+comment7.target=void\ restartLevel()
+comment8.params=
+comment8.target=void\ endLevel()
+comment9.params=
+comment9.target=void\ resetGame()
+numComments=11

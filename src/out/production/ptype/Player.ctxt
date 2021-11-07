@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=
+comment1.target=Player()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ checkKeys()
+comment4.params=b
+comment4.target=void\ showPlayer(boolean)
+comment5.params=b
+comment5.target=void\ enableKeys(boolean)
+comment6.params=
+comment6.target=void\ resetLocation()
+numComments=7

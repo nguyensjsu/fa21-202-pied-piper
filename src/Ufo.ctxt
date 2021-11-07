@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Ufo
+comment1.params=p
+comment1.target=Ufo(int)
+comment2.params=p\ type
+comment2.target=Ufo(int,\ int)
+comment3.params=
+comment3.target=void\ act()
+numComments=4

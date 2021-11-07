@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+java-vm-vendor: Oracle Corporation
+java-version: 1.8.0_25
+os-arch: x86
+description: Blast off and strike the evil Bydo empire!<br><br>Arrow k
+ eys to move, space to shoot.
+os-name: Windows 7
+Class-Path:  http://www.greenfoot.org/sharedjars/Greenfoot-core-2.7.ja
+ r http://www.greenfoot.org/sharedjars/jl1.0.1.jar
+title: P-TYPE
+short-description: Side scrolling shoot'em up
+url: 
+Main-Class: greenfoot.export.GreenfootScenarioViewer
+os-version: 6.1
+java-home: C:\Program Files (x86)\Greenfoot\jdk\jre
+java-vm-name: Java HotSpot(TM) Client VM
+width: 616
+greenfoot-version: 2.4.1
+java-vm-version: 25.25-b02
+height: 469
+
