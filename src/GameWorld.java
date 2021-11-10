@@ -41,8 +41,8 @@ public class GameWorld extends World
     private void prepare() {
         this.addObject((Actor)new Space(), 0, 200);
         this.addObject((Actor)new Space(), 600, 200);
-        (this.introMusic = new GreenfootSound("sanxion.mp3")).setVolume(70);
-        (this.gameMusic = new GreenfootSound("delta.mp3")).setVolume(50);
+        (this.introMusic = new GreenfootSound("sanxion.mp3")).setVolume(0);
+        (this.gameMusic = new GreenfootSound("delta.mp3")).setVolume(0);
         this.addObject((Actor)(this.startScreen = new StartScreen()), 300, 200);
         this.addObject((Actor)(this.player = new Player()), 83, 215);
         this.player.showPlayer(false);
