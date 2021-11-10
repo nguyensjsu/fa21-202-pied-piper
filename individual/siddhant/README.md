@@ -23,7 +23,7 @@
 ## 11/05/2021
 
 ### What was done?
-- Everyone presented their best games and we finalized a game that we will be working on (PTYPE - https://www.greenfoot.org/scenarios/13388)
+- Everyone presented their best games and we finalized a game that we will be working on (PTYPE - [link to the game](https://www.greenfoot.org/scenarios/13388))
 
 ### What is planned for next meet?
 - Play around with the game and find what features can be added, think about where and which design patterns can be used.
