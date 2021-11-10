@@ -5,6 +5,7 @@
 ## 11/03/2021
 
 What was done?
+
 > John setup the meeting notes document and the Sprint task sheet.
 > Roger setup the git.
 > We discussed about everyone's expertise and area of interest and looked at previous semester student's project to get an idea how to go about our poject.
