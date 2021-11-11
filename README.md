@@ -34,3 +34,13 @@ TODO
     - "User Story Video" to be played in class on "User Story Day"
   - Project Demo
     - Give a demo of your teams working prototype on "Demo Day"
+
+## UML Diagrams
+
+### Original P-TYPE Game Class Diagram
+
+![P-Type Class Diagram](./uml/ptype_class_diagram.png)
+
+### Revised Q-TYPE Game Class Diagram
+
+TODO
