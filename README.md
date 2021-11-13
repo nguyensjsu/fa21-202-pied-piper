@@ -24,7 +24,7 @@ TODO
 
 ## Individual Journals
 
-* [John Monsod](./individual/john/journal.md)
+* [John Monsod](./individual/john/README.md)
 * [Roger Kuo](./individual/roger/README.md)
 
 ## Project Videos
