@@ -53,7 +53,7 @@ public class GameWorld extends World
 
         // Roger - Create and attach life oberserver
         this.addObject((Actor)(this.lifeObserver =
-                new LifeObserver(this.player, this.playerLives)), 85, 215);
+                new LifeObserver(this.player, this.playerLives)), 300, 50);
         this.player.attach(this.lifeObserver);
         this.showPlayer(false);
 
