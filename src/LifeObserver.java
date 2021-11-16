@@ -6,20 +6,17 @@ import greenfoot.Color;
 
 public class LifeObserver extends Actor implements IObserver {
 
-    private String display;
     protected int lives;
-    protected Player subject;
+    protected Player subject; // not really in use at the moment
 
     public LifeObserver( Player theSubject, int lives ) {
         this.lives = lives;
         this.subject = theSubject ;
-        this.display = "LIVES: " + this.lives ;
     }
 
     public void update() {
         this.showState(false);
         this.lives--;
-        this.display = "LIVES: " + this.lives ;
         this.showState(true);
     }
 
@@ -27,7 +24,7 @@ public class LifeObserver extends Actor implements IObserver {
         if (b) {
             this.setImage(
                     new GreenfootImage(
-                            this.display, 25,
+                            "LIVES: " + this.lives, 25,
                             Color.ORANGE, null, Color.WHITE));
         }
         else {
