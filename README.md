@@ -26,6 +26,9 @@ TODO
 
 * [John Monsod](./individual/john/README.md)
 * [Roger Kuo](./individual/roger/README.md)
+* [Siddhant Satish Parma](./individual/siddhant/README.md)
+* [Faizali Mulla](./individual/faizali/README.md)
+* [Hashmitha Katta](./individual/hashmitha/README.md)
 
 ## Project Videos
 - Link to your team's project Videos
