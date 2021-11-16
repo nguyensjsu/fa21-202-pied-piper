@@ -28,9 +28,6 @@ public class GameWorld extends World
     int gameState;
     GreenfootSound introMusic;
     GreenfootSound gameMusic;
-
-    // Roger - Added life observer
-    IObserver lifeObserver;
     
     public GameWorld() {
         super(600, 400, 1, false);
@@ -44,19 +41,11 @@ public class GameWorld extends World
     private void prepare() {
         this.addObject((Actor)new Space(), 0, 200);
         this.addObject((Actor)new Space(), 600, 200);
-
         (this.introMusic = new GreenfootSound("sanxion.mp3")).setVolume(0);
         (this.gameMusic = new GreenfootSound("delta.mp3")).setVolume(0);
-
         this.addObject((Actor)(this.startScreen = new StartScreen()), 300, 200);
         this.addObject((Actor)(this.player = new Player()), 83, 215);
-
-        // Roger - Create and attach life oberserver
-        this.addObject((Actor)(this.lifeObserver =
-                new LifeObserver(this.player, this.playerLives)), 300, 50);
-        this.player.attach(this.lifeObserver);
-        this.showPlayer(false);
-
+        this.player.showPlayer(false);
         final Class[] x = { Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class };
         this.setPaintOrder(x);
     }
@@ -82,7 +71,7 @@ public class GameWorld extends World
                 }
                 this.gameState = 4;
                 this.removeObject((Actor)this.startScreen);
-                this.showPlayer(false);
+                this.player.showPlayer(false);
                 if (this.introMusic.isPlaying()) {
                     this.introMusic.stop();
                     break;
@@ -98,7 +87,7 @@ public class GameWorld extends World
     }
     
     public void endGame() {
-        this.showPlayer(false);
+        this.player.showPlayer(false);
         this.addObject((Actor)new GameOverScreen(), 300, 200);
         this.gameState = 2;
         if (this.gameMusic.isPlaying()) {
@@ -158,6 +147,5 @@ public class GameWorld extends World
     
     public void showPlayer(final boolean b) {
         this.player.showPlayer(b);
-        this.lifeObserver.showState(b);
     }
 }

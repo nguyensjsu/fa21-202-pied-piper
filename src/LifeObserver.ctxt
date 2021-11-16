@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=LifeObserver
-comment1.params=theSubject\ lives
-comment1.target=LifeObserver(Player,\ int)
-comment2.params=
-comment2.target=void\ update()
-comment3.params=b
-comment3.target=void\ showState(boolean)
-numComments=4
