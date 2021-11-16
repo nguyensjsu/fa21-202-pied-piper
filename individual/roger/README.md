@@ -64,7 +64,29 @@
 
 ---
 
-## 12 November 2021
+## 13 November 2021
+
+### What we did
+
+- Reviewed the extracted features and tasks
+
+### What we are doing / what is stuck
+
+- Assigning priority levels
+- Delegated tasks for each member
+  - I tried simplifying the requirements so that the tasks are achievable within reasonable time
+  - Perhaps my direction is wrong, but I wanted to prioritize tasks that allowed for the implementation of a pattern
+  - Although, some base features may need to be implemented before a pattern can be applied
+
+### What we will need to do
+
+- Start working on the assigned tasks for the week
+  - The 5 starting items from the backlog have been moved to the TO-DO list.
+  - I will be implementing the display of player lives and adding a score feature
+
+---
+
+## 17 November 2021
 
 ### What we did
 ### What we are doing / what is stuck
