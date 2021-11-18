@@ -1,6 +1,6 @@
 public interface IObserver {
 
-    public abstract void update();
-    public void showState(final boolean b);
+    void update();
+    void showState(final boolean b);
 
 }
