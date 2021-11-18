@@ -113,6 +113,9 @@ public class GameWorld extends World
         if (this.runningLevel == 1) {
             this.runningLevel = 2;
             (this.timer = new Timer()).scheduleAtFixedRate(new Level_2_Task(this), 1000L, 600L);
+        } else if (this.runningLevel == 2) {
+            this.runningLevel = 3;
+            (this.timer = new Timer()).scheduleAtFixedRate(new BossLevel_Task(this), 1000L, 600L);
         }
         else {
             if (!this.gameMusic.isPlaying()) {
