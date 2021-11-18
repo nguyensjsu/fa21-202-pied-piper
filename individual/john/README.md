@@ -3,6 +3,33 @@
 
 ## Timeline
 
+### 11/17/2021
+
+#### What we did
+* TBD
+
+#### Blockers
+* TBD
+
+#### What we will do next
+* TBD
+
+
+### 11/13/2021
+
+#### What we did
+* Identified all User Stories for what we will do in our project.
+* Drilled down the details involved in each story, and identified corresponding tasks.
+* I added all tasks to our Task Board and assigned as we agreed as a team.
+* Discussed trade-offs with some tasks, determined which were high, medium and low priorities.
+
+#### Blockers
+* Still needed to determine whether we could render plain text as an overlay to the screens
+or if we will need to generate graphical assets for each character we need to render.
+
+#### What we will do next
+* Work on our respective tasks.
+
 ### 11/10/2021
 
 #### What we did
