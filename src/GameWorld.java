@@ -6,6 +6,8 @@ import greenfoot.Actor;
 import greenfoot.GreenfootSound;
 import java.util.Timer;
 import greenfoot.World;
+import greenfoot.GreenfootImage;
+import greenfoot.Color;
 
 // 
 // Decompiled by Procyon v0.5.36
@@ -26,11 +28,20 @@ public class GameWorld extends World
     private static final int START_SCREEN = 3;
     private static final int BETWEEN_LEVELS = 4;
     int gameState;
-    GreenfootSound introMusic;
-    GreenfootSound gameMusic;
+    GreenfootSound introMusic  = new GreenfootSound("sanxion.mp3");
+    GreenfootSound gameMusic = new GreenfootSound("delta.mp3");
 
     // Roger - Added life observer
     IObserver lifeObserver;
+    
+    // Sid - Initialized variables and instantiated objects for Settings Screen 
+    int bgmusic = 100;
+    int soundeffects = 100;
+    private static final int SETTINGS_SCREEN = 5;
+    Button plus; 
+    Button minus;
+    Button plus1;
+    Button minus1;
     
     public GameWorld() {
         super(600, 400, 1, false);
@@ -39,14 +50,15 @@ public class GameWorld extends World
         this.playerLives = 3;
         this.gameState = 3;
         this.prepare();
+        prepare();
     }
     
     private void prepare() {
         this.addObject((Actor)new Space(), 0, 200);
         this.addObject((Actor)new Space(), 600, 200);
 
-        (this.introMusic = new GreenfootSound("sanxion.mp3")).setVolume(0);
-        (this.gameMusic = new GreenfootSound("delta.mp3")).setVolume(0);
+        (this.introMusic).setVolume(bgmusic);
+        (this.gameMusic).setVolume(soundeffects);
 
         this.addObject((Actor)(this.startScreen = new StartScreen()), 300, 200);
         this.addObject((Actor)(this.player = new Player()), 83, 215);
@@ -57,7 +69,14 @@ public class GameWorld extends World
         this.player.attach(this.lifeObserver);
         this.showPlayer(false);
 
-        final Class[] x = { Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class };
+        // Sid - Initialization of buttons for Settings Screen
+        
+        this.plus = new Button("plus.png", this, "bgmusic", 5);
+        this.minus = new Button("minus.png", this, "bgmusic", -5);
+        this.plus1 = new Button("plus.png", this, "soundeffects", 5);
+        this.minus1 = new Button("minus.png", this, "soundeffects", -5);
+        
+        final Class[] x = { Button.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class};
         this.setPaintOrder(x);
     }
     
@@ -77,14 +96,17 @@ public class GameWorld extends World
                 if (!this.introMusic.isPlaying()) {
                     this.introMusic.play();
                 }
-                if (!Greenfoot.isKeyDown("space")) {
+                if (Greenfoot.isKeyDown("space")) {
+                    this.gameState = 4;
+                    this.removeObject((Actor)this.startScreen);
+                    this.showPlayer(false);
+                    if (this.introMusic.isPlaying()) {
+                        this.introMusic.stop();
+                    }
                     break;
                 }
-                this.gameState = 4;
-                this.removeObject((Actor)this.startScreen);
-                this.showPlayer(false);
-                if (this.introMusic.isPlaying()) {
-                    this.introMusic.stop();
+                if (Greenfoot.isKeyDown("s")){
+                    this.gameState = 5;
                     break;
                 }
                 break;
@@ -92,6 +114,15 @@ public class GameWorld extends World
             case 4: {
                 this.startNewLevel();
                 this.gameState = 1;
+                break;
+            }
+            case 5: {
+                this.displaysettings();
+                this.addButtons();
+                if (Greenfoot.isKeyDown("escape")){
+                    this.backtoStart();
+                    break;
+                }
                 break;
             }
         }
@@ -163,4 +194,49 @@ public class GameWorld extends World
         this.player.showPlayer(b);
         this.lifeObserver.showState(b);
     }
+    
+    // Sid - added methods to support functioning of settings page
+    
+    // This method displays the content of Settings Screen
+    public void displaysettings(){
+        final List l = this.getObjects((Class)StartScreen.class);
+        if (!l.isEmpty()) {
+            this.removeObjects((Collection)l);
+        }
+        this.addObject((Actor)new SettingsScreen(), 300, 200);
+    }
+    
+    // This method is used to navigate back to StartScreen
+    public void backtoStart(){
+        final List l = this.getObjects((Class)SettingsScreen.class);
+        final List l1 = this.getObjects((Class)Button.class);
+        if (!l.isEmpty() && !l1.isEmpty()) {
+            this.removeObjects((Collection)l);
+            this.removeObjects((Collection)l1);
+        }
+        this.gameState = 3;
+        this.addObject((Actor)this.startScreen, 300, 200);
+        this.runningLevel = -1;
+        this.playerLives = 3;
+    }
+    
+    // This method is used to add buttons to adjust Sound
+    public void addButtons(){
+        final List l = this.getObjects((Class)Button.class);
+        if (!l.isEmpty()) {
+            this.removeObjects((Collection)l);
+        }
+        addObject(minus, 400, 150);
+        addObject(plus, 500, 150);
+        addObject(minus1, 400, 250);
+        addObject(plus1, 500, 250);
+        GreenfootImage text = new GreenfootImage(String.valueOf(bgmusic), 25, Color.WHITE, null, Color.WHITE);
+        Button t = new Button(text);
+        GreenfootImage text1 = new GreenfootImage(String.valueOf(soundeffects), 25, Color.WHITE, null, Color.WHITE);
+        Button t1 = new Button(text1);
+        addObject(t, 450, 150);
+        addObject(t1, 450, 250);
+    }
+    
+    // End of Methods for Settings Screen - Sid
 }
