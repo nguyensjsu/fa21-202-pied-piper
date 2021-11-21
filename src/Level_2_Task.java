@@ -6,24 +6,10 @@ import java.util.TimerTask;
 // Decompiled by Procyon v0.5.36
 // 
 
-public class Level_2_Task extends TimerTask
+public class Level_2_Task extends BaseLevel
 {
-    GameWorld theWorld;
-    private int MAXPHASE;
-    int counter;
-    int phase;
-    int breakCounter;
-    boolean onBreak;
-    Actor entering;
-    
     public Level_2_Task(final GameWorld t) {
-        this.MAXPHASE = 7;
-        this.counter = 0;
-        this.phase = 0;
-        this.breakCounter = 0;
-        this.onBreak = false;
-        this.entering = new NowEntering();
-        this.theWorld = t;
+        super(t);
     }
     
     @Override
@@ -40,6 +26,7 @@ public class Level_2_Task extends TimerTask
         else {
             switch (this.phase) {
                 case 0: {
+                    updateDebugData();
                     ++this.counter;
                     if (this.counter == 1) {
                         this.theWorld.showPlayer(false);
@@ -56,6 +43,7 @@ public class Level_2_Task extends TimerTask
                     break;
                 }
                 case 1: {
+                    updateDebugData();
                     ++this.counter;
                     if (this.counter < 6) {
                         this.theWorld.addObject((Actor)new Ufo(1, 3), 600, 250);
@@ -69,6 +57,7 @@ public class Level_2_Task extends TimerTask
                     break;
                 }
                 case 2: {
+                    updateDebugData();
                     ++this.counter;
                     if (this.counter < 6) {
                         this.theWorld.addObject((Actor)new Ufo(2, 3), 600, 380);
@@ -78,6 +67,7 @@ public class Level_2_Task extends TimerTask
                     break;
                 }
                 case 3: {
+                    updateDebugData();
                     ++this.counter;
                     if (this.counter < 6) {
                         this.theWorld.addObject((Actor)new Ufo(3, 3), 600, 20);
@@ -87,6 +77,7 @@ public class Level_2_Task extends TimerTask
                     break;
                 }
                 case 4: {
+                    updateDebugData();
                     ++this.counter;
                     if (this.counter == 1) {
                         this.theWorld.addObject((Actor)new Ufo(0), 600, 100);
@@ -112,6 +103,7 @@ public class Level_2_Task extends TimerTask
                     break;
                 }
                 case 5: {
+                    updateDebugData();
                     ++this.counter;
                     if (this.counter == 1) {
                         this.theWorld.addObject((Actor)new Ufo(0), 600, 100);
@@ -132,6 +124,7 @@ public class Level_2_Task extends TimerTask
                     break;
                 }
                 case 6: {
+                    updateDebugData();
                     ++this.counter;
                     if (this.counter == 1) {
                         this.theWorld.addObject((Actor)new Ufo(0), 600, 200);
@@ -160,6 +153,7 @@ public class Level_2_Task extends TimerTask
                     break;
                 }
                 case 7: {
+                    updateDebugData();
                     ++this.counter;
                     final List l = this.theWorld.getObjects((Class)Ufo.class);
                     if (l.isEmpty()) {

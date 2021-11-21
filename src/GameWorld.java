@@ -31,7 +31,10 @@ public class GameWorld extends World
 
     // Roger - Added life observer
     IObserver lifeObserver;
-    
+
+    // John - track debug data within a game level
+    IDebugObserver debugObserver;
+
     public GameWorld() {
         super(600, 400, 1, false);
         this.runningLevel = -1;
@@ -51,11 +54,14 @@ public class GameWorld extends World
         this.addObject((Actor)(this.startScreen = new StartScreen()), 300, 200);
         this.addObject((Actor)(this.player = new Player()), 83, 215);
 
-        // Roger - Create and attach life oberserver
+        // Roger - Create and attach life observer
         this.addObject((Actor)(this.lifeObserver =
                 new LifeObserver(this.player, this.playerLives)), 300, 50);
         this.player.attach(this.lifeObserver);
         this.showPlayer(false);
+
+        this.addObject((Actor)(this.debugObserver = new DebugObserver()), 500, 50);
+        this.player.setDebugObserver(this.debugObserver);
 
         final Class[] x = { Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class };
         this.setPaintOrder(x);
@@ -99,6 +105,7 @@ public class GameWorld extends World
     
     public void endGame() {
         this.showPlayer(false);
+        this.debugObserver.clearData();
         this.addObject((Actor)new GameOverScreen(), 300, 200);
         this.gameState = 2;
         if (this.gameMusic.isPlaying()) {
@@ -110,19 +117,32 @@ public class GameWorld extends World
     }
     
     public void startNewLevel() {
+
+        Level_1_Task level1Task = new Level_1_Task(this);
+        level1Task.attach(this.debugObserver);
+
+        Level_2_Task level2Task = new Level_2_Task(this);
+        level2Task.attach(this.debugObserver);
+
+        BossLevel_Task bossLevel = new BossLevel_Task(this);
+        bossLevel.attach(this.debugObserver);
+
         if (this.runningLevel == 1) {
             this.runningLevel = 2;
-            (this.timer = new Timer()).scheduleAtFixedRate(new Level_2_Task(this), 1000L, 600L);
+            (this.timer = new Timer()).scheduleAtFixedRate(level2Task, 1000L, 600L);
+            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
         } else if (this.runningLevel == 2) {
             this.runningLevel = 3;
-            (this.timer = new Timer()).scheduleAtFixedRate(new BossLevel_Task(this), 1000L, 600L);
+            (this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            //(this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
         }
         else {
             if (!this.gameMusic.isPlaying()) {
                 this.gameMusic.playLoop();
             }
             this.runningLevel = 1;
-            (this.timer = new Timer()).scheduleAtFixedRate(new Level_1_Task(this), 1000L, 600L);
+            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
+            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
         }
     }
     
@@ -157,6 +177,7 @@ public class GameWorld extends World
         this.addObject((Actor)this.startScreen, 300, 200);
         this.runningLevel = -1;
         this.playerLives = 3;
+        this.debugObserver.clearData();
     }
     
     public void showPlayer(final boolean b) {

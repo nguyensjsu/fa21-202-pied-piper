@@ -7,13 +7,18 @@ import greenfoot.Actor;
 public class Laser extends Actor
 {
     int type;
-    
+
     public Laser() {
         this(1);
     }
-    
+
+    private IDebugObserver debugObserver;
+    public Laser(final int t, IDebugObserver debugObserver) {
+        this(t);
+        this.debugObserver = debugObserver;
+    }
+
     public Laser(final int t) {
-        this.type = 1;
         this.type = t;
         if (this.type == 1) {
             this.setImage("laser.png");
@@ -22,11 +27,12 @@ public class Laser extends Actor
             this.setImage("bullet.png");
         }
     }
-    
+
     public void act() {
         this.setLocation(this.getX() + 5, this.getY());
         final Ufo a = (Ufo)this.getOneIntersectingObject((Class)Ufo.class);
         if (a != null) {
+            debugObserver.update("numHits", 1);
             this.getWorld().addObject((Actor)new Explosion(), a.getX(), a.getY());
             this.getWorld().removeObject((Actor)a);
             this.getWorld().removeObject((Actor)this);
