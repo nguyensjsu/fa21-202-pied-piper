@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ScoreObserver
+comment1.params=theSubject\ score
+comment1.target=ScoreObserver(greenfoot.World,\ int)
+comment2.params=num
+comment2.target=void\ update(int)
+comment3.params=b
+comment3.target=void\ showState(boolean)
+numComments=4
