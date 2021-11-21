@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=BaseLevel
+comment1.params=t
+comment1.target=BaseLevel(GameWorld)
+comment2.params=
+comment2.target=void\ updateDebugData()
+comment3.params=obj
+comment3.target=void\ attach(IDebugObserver)
+comment4.params=obj
+comment4.target=void\ detach(IDebugObserver)
+comment5.params=data
+comment5.target=void\ notifyObservers(java.util.Map)
+comment6.params=
+comment6.target=void\ run()
+numComments=7

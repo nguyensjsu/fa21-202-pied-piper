@@ -34,7 +34,12 @@ public class Player extends Actor
         this.i3 = new GreenfootImage("player3.png");
         this.i4 = new GreenfootImage("player2.png");
     }
-    
+
+    private IDebugObserver debugObserver;
+    public void setDebugObserver(IDebugObserver debugObserver) {
+        this.debugObserver = debugObserver;
+    }
+
     public void act() {
         if (this.enableKeys) {
             this.checkKeys();
@@ -70,7 +75,8 @@ public class Player extends Actor
             }
         }
     }
-    
+
+
     public void checkKeys() {
         if (Greenfoot.isKeyDown("up")) {
             if (this.getY() > 15) {
@@ -91,7 +97,8 @@ public class Player extends Actor
         ++this.counter;
         if (Greenfoot.isKeyDown("space") && this.counter > 14) {
             this.counter = 0;
-            this.getWorld().addObject((Actor)new Laser(2), this.getX() + 24, this.getY() + 4);
+            Laser laser = new Laser(2, debugObserver);
+            this.getWorld().addObject((Actor)laser, this.getX() + 24, this.getY() + 4);
             this.laserShot.play();
         }
     }
