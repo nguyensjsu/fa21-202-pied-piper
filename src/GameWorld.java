@@ -35,13 +35,15 @@ public class GameWorld extends World
     IObserver lifeObserver;
     
     // Sid - Initialized variables and instantiated objects for Settings Screen 
-    int bgmusic = 100;
-    int soundeffects = 100;
+    int bgmusic;
+    int soundeffects;
     private static final int SETTINGS_SCREEN = 5;
-    Button plus; 
-    Button minus;
-    Button plus1;
-    Button minus1;
+    Button bgmusicplus; 
+    Button bgmusicminus;
+    Button soundeffectsplus;
+    Button soundeffectsminus;
+    private final static int VOLUME_STEP = 5;
+    // over - Sid
     
     public GameWorld() {
         super(600, 400, 1, false);
@@ -50,7 +52,6 @@ public class GameWorld extends World
         this.playerLives = 3;
         this.gameState = 3;
         this.prepare();
-        prepare();
     }
     
     private void prepare() {
@@ -70,11 +71,13 @@ public class GameWorld extends World
         this.showPlayer(false);
 
         // Sid - Initialization of buttons for Settings Screen
-        
-        this.plus = new Button("plus.png", this, "bgmusic", 5);
-        this.minus = new Button("minus.png", this, "bgmusic", -5);
-        this.plus1 = new Button("plus.png", this, "soundeffects", 5);
-        this.minus1 = new Button("minus.png", this, "soundeffects", -5);
+        this.bgmusicplus = new Button("plus.png", this, "bgmusic", VOLUME_STEP);
+        this.bgmusicminus = new Button("minus.png", this, "bgmusic", -VOLUME_STEP);
+        this.soundeffectsplus = new Button("plus.png", this, "soundeffects", VOLUME_STEP);
+        this.soundeffectsminus = new Button("minus.png", this, "soundeffects", -VOLUME_STEP);
+        this.bgmusic = 50;
+        this.soundeffects = 50;
+        // over - Sid
         
         final Class[] x = { Button.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class};
         this.setPaintOrder(x);
@@ -226,16 +229,16 @@ public class GameWorld extends World
         if (!l.isEmpty()) {
             this.removeObjects((Collection)l);
         }
-        addObject(minus, 400, 150);
-        addObject(plus, 500, 150);
-        addObject(minus1, 400, 250);
-        addObject(plus1, 500, 250);
-        GreenfootImage text = new GreenfootImage(String.valueOf(bgmusic), 25, Color.WHITE, null, Color.WHITE);
-        Button t = new Button(text);
-        GreenfootImage text1 = new GreenfootImage(String.valueOf(soundeffects), 25, Color.WHITE, null, Color.WHITE);
-        Button t1 = new Button(text1);
-        addObject(t, 450, 150);
-        addObject(t1, 450, 250);
+        addObject(bgmusicminus, 400, 160);
+        addObject(bgmusicplus, 500, 160);
+        addObject(soundeffectsminus, 400, 230);
+        addObject(soundeffectsplus, 500, 230);
+        GreenfootImage bgmusiclabel = new GreenfootImage(String.valueOf(bgmusic), 25, Color.WHITE, null, Color.WHITE);
+        GreenfootImage soundeffectslabel = new GreenfootImage(String.valueOf(soundeffects), 25, Color.WHITE, null, Color.WHITE);
+        Button bgmusiclevellabel = new Button(bgmusiclabel);
+        Button soundeffectslevellabel = new Button(soundeffectslabel);
+        addObject(bgmusiclevellabel, 450, 160);
+        addObject(soundeffectslevellabel, 450, 230);
     }
     
     // End of Methods for Settings Screen - Sid

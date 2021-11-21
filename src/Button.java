@@ -12,58 +12,34 @@ import java.util.Collection;
  */
 public class Button extends Actor
 {
-    GreenfootImage i;
     private GameWorld gw;
     int val;
     String soundtype;
-    public Button(String image, GameWorld gw, String soundtype, int val)
+    public Button(String imagefilename, GameWorld gw, String soundtype, int val)
     {
-        setImage(new GreenfootImage(image));
+        setImage(new GreenfootImage(imagefilename));
         this.gw = gw;
         this.val = val;
         this.soundtype = soundtype;
     }
     
-    public Button(GreenfootImage t)
+    public Button(GreenfootImage textlabel)
     {
-        setImage(t);
+        setImage(textlabel);
     }
     
     public void act()
     {
         if (Greenfoot.mouseClicked(this)){
             if(soundtype == "bgmusic"){
-                if(val > 0){
-                    if(gw.bgmusic < 100){
-                        gw.bgmusic += val;
-                        (gw.introMusic).setVolume(gw.bgmusic);
-                    }
-                    else{gw.bgmusic = 100;}
-                }
-                else if(val < 0){
-                    if(gw.bgmusic > 0){
-                        gw.bgmusic += val;
-                        (gw.introMusic).setVolume(gw.bgmusic);
-                    }
-                    else{gw.bgmusic = 0;}
-                }
+                gw.bgmusic += val;
+                gw.bgmusic = gw.bgmusic > 100 ? 100 : (Math.max(gw.bgmusic, 0));
+                (gw.introMusic).setVolume(gw.bgmusic);
             }
             else if(soundtype == "soundeffects"){
-                if(val > 0){
-                    if(gw.soundeffects < 100){
-                        gw.soundeffects += val;
-                        (gw.gameMusic).setVolume(gw.soundeffects);
-                    }
-                    else{gw.soundeffects = 100;}
-                    
-                }
-                else if(val < 0){
-                    if(gw.soundeffects > 0){
-                        gw.soundeffects += val;
-                        (gw.gameMusic).setVolume(gw.soundeffects);
-                    }
-                    else{gw.soundeffects = 0;}
-                }
+                gw.soundeffects += val;
+                gw.soundeffects = gw.soundeffects > 100 ? 100 : (Math.max(gw.soundeffects, 0));
+                (gw.gameMusic).setVolume(gw.soundeffects);
             }
         }
     }
