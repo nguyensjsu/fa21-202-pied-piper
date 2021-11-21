@@ -1,13 +1,10 @@
-import java.util.List;
 import greenfoot.Actor;
+
+import java.util.List;
 import java.util.TimerTask;
 
-// 
-// Decompiled by Procyon v0.5.36
-// 
+public class BossLevel_Task extends TimerTask {
 
-public class Level_2_Task extends TimerTask
-{
     GameWorld theWorld;
     private int MAXPHASE;
     int counter;
@@ -15,8 +12,8 @@ public class Level_2_Task extends TimerTask
     int breakCounter;
     boolean onBreak;
     Actor entering;
-    
-    public Level_2_Task(final GameWorld t) {
+
+    public BossLevel_Task(final GameWorld t) {
         this.MAXPHASE = 7;
         this.counter = 0;
         this.phase = 0;
@@ -25,7 +22,7 @@ public class Level_2_Task extends TimerTask
         this.entering = new NowEntering();
         this.theWorld = t;
     }
-    
+
     @Override
     public void run() {
         if (this.onBreak) {
@@ -43,7 +40,7 @@ public class Level_2_Task extends TimerTask
                     ++this.counter;
                     if (this.counter == 1) {
                         this.theWorld.showPlayer(false);
-                        this.entering.setImage("level2.png");
+                        this.entering.setImage("boss_level.png");
                         this.theWorld.addObject(this.entering, 300, 200);
                         break;
                     }
@@ -163,8 +160,7 @@ public class Level_2_Task extends TimerTask
                     ++this.counter;
                     final List l = this.theWorld.getObjects((Class)Ufo.class);
                     if (l.isEmpty()) {
-                        //this.theWorld.endGame();
-                        this.theWorld.endLevel();
+                        this.theWorld.endGame();
                         this.onBreak = true;
                         break;
                     }

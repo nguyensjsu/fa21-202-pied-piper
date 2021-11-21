@@ -1,5 +1,7 @@
 #BlueJ class context
-comment0.target=Observer
+comment0.target=IObserver
 comment1.params=
 comment1.target=void\ update()
-numComments=2
+comment2.params=b
+comment2.target=void\ showState(boolean)
+numComments=3
