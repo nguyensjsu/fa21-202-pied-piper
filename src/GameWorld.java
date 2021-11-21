@@ -14,7 +14,7 @@ import java.util.ArrayList;
 // Decompiled by Procyon v0.5.36
 // 
 
-public class GameWorld extends World implements ISubject
+public class GameWorld extends World implements ISubject, IObserver
 {
     int x;
     int y;
@@ -23,6 +23,7 @@ public class GameWorld extends World implements ISubject
     Timer timer;
     Player player;
     int playerLives;
+    int playerScore;
     StartScreen startScreen;
     private static final int RUNNING = 1;
     private static final int GAMEOVER_SCREEN = 2;
@@ -34,12 +35,11 @@ public class GameWorld extends World implements ISubject
 
     // Roger - Added life observer
     IObserver lifeObserver;
+    private ArrayList<IObserver> observers = new ArrayList<>() ;
 
     // John - track debug data within a game level
     IDebugObserver debugObserver;
 
-    private ArrayList<IObserver> observers = new ArrayList<>() ;
-    
     // Sid - Initialized variables and instantiated objects for Settings Screen 
     int bgmusic;
     int soundeffects;
@@ -56,6 +56,7 @@ public class GameWorld extends World implements ISubject
         this.runningLevel = -1;
         this.d = 0.0;
         this.playerLives = 3;
+        this.playerScore = 0;
         this.gameState = 3;
         this.prepare();
     }
@@ -216,6 +217,7 @@ public class GameWorld extends World implements ISubject
         this.addObject((Actor)this.startScreen, 300, 200);
         this.runningLevel = -1;
         this.playerLives = 3;
+        this.playerScore = 0;
         this.debugObserver.clearData();
         // Update/reset life observer
         this.notifyObservers(this.playerLives);
@@ -272,7 +274,7 @@ public class GameWorld extends World implements ISubject
     // End of Methods for Settings Screen - Sid
 
     // ROGER - Observer Pattern
-
+    // As the Subject
     public void attach(IObserver obj) {
         observers.add(obj) ;
     }
@@ -287,5 +289,13 @@ public class GameWorld extends World implements ISubject
         }
     }
 
+    // As the Observer
+    public void update(int num) {
+        this.playerScore += num;
+    }
+
+    public void showState(final boolean b) {
+        // Empty
+    }
     // END - ROGER - Observer Pattern
 }
