@@ -1,23 +1,22 @@
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootSound;
 import greenfoot.GreenfootImage;
+import greenfoot.World;
 import greenfoot.Actor;
 import greenfoot.Color;
 
 public class LifeObserver extends Actor implements IObserver {
 
     protected int lives;
-    protected Player subject; // not really in use at the moment
+    protected World subject; // not really in use at the moment
 
-    public LifeObserver( Player theSubject, int lives ) {
+    public LifeObserver( World theSubject, int lives ) {
         this.lives = lives;
         this.subject = theSubject ;
     }
 
-    public void update() {
-        this.showState(false);
-        this.lives--;
-        this.showState(true);
+    public void update(int num) {
+        this.lives = num;
     }
 
     public void showState(final boolean b) {

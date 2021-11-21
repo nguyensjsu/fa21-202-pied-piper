@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=Button
-comment0.text=\n\ Write\ a\ description\ of\ class\ Button\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Button\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=imagefilename\ gw\ soundtype\ val
 comment1.target=Button(java.lang.String,\ GameWorld,\ java.lang.String,\ int)
-comment2.params=label
+comment2.params=textlabel
 comment2.target=Button(greenfoot.GreenfootImage)
 comment3.params=
 comment3.target=void\ act()

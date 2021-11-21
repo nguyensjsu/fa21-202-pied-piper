@@ -8,12 +8,13 @@ import java.util.Timer;
 import greenfoot.World;
 import greenfoot.GreenfootImage;
 import greenfoot.Color;
+import java.util.ArrayList;
 
 // 
 // Decompiled by Procyon v0.5.36
 // 
 
-public class GameWorld extends World
+public class GameWorld extends World implements ISubject
 {
     int x;
     int y;
@@ -33,6 +34,7 @@ public class GameWorld extends World
 
     // Roger - Added life observer
     IObserver lifeObserver;
+    private ArrayList<IObserver> observers = new ArrayList<>() ;
     
     // Sid - Initialized variables and instantiated objects for Settings Screen 
     int bgmusic;
@@ -58,6 +60,8 @@ public class GameWorld extends World
         this.addObject((Actor)new Space(), 0, 200);
         this.addObject((Actor)new Space(), 600, 200);
 
+        this.bgmusic = 0;       // Changed to start muted because it is annoying.
+        this.soundeffects = 0;  //
         (this.introMusic).setVolume(bgmusic);
         (this.gameMusic).setVolume(soundeffects);
 
@@ -66,8 +70,8 @@ public class GameWorld extends World
 
         // Roger - Create and attach life oberserver
         this.addObject((Actor)(this.lifeObserver =
-                new LifeObserver(this.player, this.playerLives)), 300, 50);
-        this.player.attach(this.lifeObserver);
+                new LifeObserver(this, this.playerLives)), 300, 50);
+        this.attach(this.lifeObserver);
         this.showPlayer(false);
 
         // Sid - Initialization of buttons for Settings Screen
@@ -75,8 +79,6 @@ public class GameWorld extends World
         this.bgmusicminus = new Button("minus.png", this, "bgmusic", -VOLUME_STEP);
         this.soundeffectsplus = new Button("plus.png", this, "soundeffects", VOLUME_STEP);
         this.soundeffectsminus = new Button("minus.png", this, "soundeffects", -VOLUME_STEP);
-        this.bgmusic = 50;
-        this.soundeffects = 50;
         // over - Sid
         
         final Class[] x = { Button.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class};
@@ -161,7 +163,9 @@ public class GameWorld extends World
     }
     
     public void takeLife() {
+        // Deduct life point
         --this.playerLives;
+        this.notifyObservers(this.playerLives);
         if (this.playerLives == 0) {
             this.endGame();
         }
@@ -191,6 +195,8 @@ public class GameWorld extends World
         this.addObject((Actor)this.startScreen, 300, 200);
         this.runningLevel = -1;
         this.playerLives = 3;
+        // Update/reset life observer
+        this.notifyObservers(this.playerLives);
     }
     
     public void showPlayer(final boolean b) {
@@ -242,4 +248,22 @@ public class GameWorld extends World
     }
     
     // End of Methods for Settings Screen - Sid
+
+    // ROGER - Observer Pattern
+
+    public void attach(IObserver obj) {
+        observers.add(obj) ;
+    }
+
+    public void detach(IObserver obj) {
+        observers.remove(obj) ;
+    }
+
+    public void notifyObservers(int num) {
+        for (IObserver obj : observers) {
+            obj.update(num);
+        }
+    }
+
+    // END - ROGER - Observer Pattern
 }
