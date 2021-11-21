@@ -65,6 +65,7 @@ public class Player extends Actor
             if (a != null) {
                 this.getWorld().addObject((Actor)new Explosion(), this.getX(), this.getY());
                 this.showPlayer(false);
+                // Deduct Life Point
                 ((GameWorld)this.getWorld()).takeLife();
             }
         }
@@ -114,4 +115,5 @@ public class Player extends Actor
     public void resetLocation() {
         this.setLocation(83, 215);
     }
+
 }

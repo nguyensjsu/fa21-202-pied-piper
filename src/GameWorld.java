@@ -6,12 +6,15 @@ import greenfoot.Actor;
 import greenfoot.GreenfootSound;
 import java.util.Timer;
 import greenfoot.World;
+import greenfoot.GreenfootImage;
+import greenfoot.Color;
+import java.util.ArrayList;
 
 // 
 // Decompiled by Procyon v0.5.36
 // 
 
-public class GameWorld extends World
+public class GameWorld extends World implements ISubject
 {
     int x;
     int y;
@@ -26,8 +29,23 @@ public class GameWorld extends World
     private static final int START_SCREEN = 3;
     private static final int BETWEEN_LEVELS = 4;
     int gameState;
-    GreenfootSound introMusic;
-    GreenfootSound gameMusic;
+    GreenfootSound introMusic  = new GreenfootSound("sanxion.mp3");
+    GreenfootSound gameMusic = new GreenfootSound("delta.mp3");
+
+    // Roger - Added life observer
+    IObserver lifeObserver;
+    private ArrayList<IObserver> observers = new ArrayList<>() ;
+    
+    // Sid - Initialized variables and instantiated objects for Settings Screen 
+    int bgmusic;
+    int soundeffects;
+    private static final int SETTINGS_SCREEN = 5;
+    Button bgmusicplus; 
+    Button bgmusicminus;
+    Button soundeffectsplus;
+    Button soundeffectsminus;
+    private final static int VOLUME_STEP = 5;
+    // over - Sid
     
     public GameWorld() {
         super(600, 400, 1, false);
@@ -41,12 +59,29 @@ public class GameWorld extends World
     private void prepare() {
         this.addObject((Actor)new Space(), 0, 200);
         this.addObject((Actor)new Space(), 600, 200);
-        (this.introMusic = new GreenfootSound("sanxion.mp3")).setVolume(0);
-        (this.gameMusic = new GreenfootSound("delta.mp3")).setVolume(0);
+
+        this.bgmusic = 0;       // Changed to start muted because it is annoying.
+        this.soundeffects = 0;  //
+        (this.introMusic).setVolume(bgmusic);
+        (this.gameMusic).setVolume(soundeffects);
+
         this.addObject((Actor)(this.startScreen = new StartScreen()), 300, 200);
         this.addObject((Actor)(this.player = new Player()), 83, 215);
-        this.player.showPlayer(false);
-        final Class[] x = { Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class };
+
+        // Roger - Create and attach life oberserver
+        this.addObject((Actor)(this.lifeObserver =
+                new LifeObserver(this, this.playerLives)), 300, 50);
+        this.attach(this.lifeObserver);
+        this.showPlayer(false);
+
+        // Sid - Initialization of buttons for Settings Screen
+        this.bgmusicplus = new Button("plus.png", this, "bgmusic", VOLUME_STEP);
+        this.bgmusicminus = new Button("minus.png", this, "bgmusic", -VOLUME_STEP);
+        this.soundeffectsplus = new Button("plus.png", this, "soundeffects", VOLUME_STEP);
+        this.soundeffectsminus = new Button("minus.png", this, "soundeffects", -VOLUME_STEP);
+        // over - Sid
+        
+        final Class[] x = { Button.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class};
         this.setPaintOrder(x);
     }
     
@@ -66,14 +101,17 @@ public class GameWorld extends World
                 if (!this.introMusic.isPlaying()) {
                     this.introMusic.play();
                 }
-                if (!Greenfoot.isKeyDown("space")) {
+                if (Greenfoot.isKeyDown("space")) {
+                    this.gameState = 4;
+                    this.removeObject((Actor)this.startScreen);
+                    this.showPlayer(false);
+                    if (this.introMusic.isPlaying()) {
+                        this.introMusic.stop();
+                    }
                     break;
                 }
-                this.gameState = 4;
-                this.removeObject((Actor)this.startScreen);
-                this.player.showPlayer(false);
-                if (this.introMusic.isPlaying()) {
-                    this.introMusic.stop();
+                if (Greenfoot.isKeyDown("s")){
+                    this.gameState = 5;
                     break;
                 }
                 break;
@@ -83,11 +121,20 @@ public class GameWorld extends World
                 this.gameState = 1;
                 break;
             }
+            case 5: {
+                this.displaysettings();
+                this.addButtons();
+                if (Greenfoot.isKeyDown("escape")){
+                    this.backtoStart();
+                    break;
+                }
+                break;
+            }
         }
     }
     
     public void endGame() {
-        this.player.showPlayer(false);
+        this.showPlayer(false);
         this.addObject((Actor)new GameOverScreen(), 300, 200);
         this.gameState = 2;
         if (this.gameMusic.isPlaying()) {
@@ -102,6 +149,9 @@ public class GameWorld extends World
         if (this.runningLevel == 1) {
             this.runningLevel = 2;
             (this.timer = new Timer()).scheduleAtFixedRate(new Level_2_Task(this), 1000L, 600L);
+        } else if (this.runningLevel == 2) {
+            this.runningLevel = 3;
+            (this.timer = new Timer()).scheduleAtFixedRate(new BossLevel_Task(this), 1000L, 600L);
         }
         else {
             if (!this.gameMusic.isPlaying()) {
@@ -113,7 +163,9 @@ public class GameWorld extends World
     }
     
     public void takeLife() {
+        // Deduct life point
         --this.playerLives;
+        this.notifyObservers(this.playerLives);
         if (this.playerLives == 0) {
             this.endGame();
         }
@@ -143,9 +195,75 @@ public class GameWorld extends World
         this.addObject((Actor)this.startScreen, 300, 200);
         this.runningLevel = -1;
         this.playerLives = 3;
+        // Update/reset life observer
+        this.notifyObservers(this.playerLives);
     }
     
     public void showPlayer(final boolean b) {
         this.player.showPlayer(b);
+        this.lifeObserver.showState(b);
     }
+    
+    // Sid - added methods to support functioning of settings page
+    
+    // This method displays the content of Settings Screen
+    public void displaysettings(){
+        final List l = this.getObjects((Class)StartScreen.class);
+        if (!l.isEmpty()) {
+            this.removeObjects((Collection)l);
+        }
+        this.addObject((Actor)new SettingsScreen(), 300, 200);
+    }
+    
+    // This method is used to navigate back to StartScreen
+    public void backtoStart(){
+        final List l = this.getObjects((Class)SettingsScreen.class);
+        final List l1 = this.getObjects((Class)Button.class);
+        if (!l.isEmpty() && !l1.isEmpty()) {
+            this.removeObjects((Collection)l);
+            this.removeObjects((Collection)l1);
+        }
+        this.gameState = 3;
+        this.addObject((Actor)this.startScreen, 300, 200);
+        this.runningLevel = -1;
+        this.playerLives = 3;
+    }
+    
+    // This method is used to add buttons to adjust Sound
+    public void addButtons(){
+        final List l = this.getObjects((Class)Button.class);
+        if (!l.isEmpty()) {
+            this.removeObjects((Collection)l);
+        }
+        addObject(bgmusicminus, 400, 160);
+        addObject(bgmusicplus, 500, 160);
+        addObject(soundeffectsminus, 400, 230);
+        addObject(soundeffectsplus, 500, 230);
+        GreenfootImage bgmusiclabel = new GreenfootImage(String.valueOf(bgmusic), 25, Color.WHITE, null, Color.WHITE);
+        GreenfootImage soundeffectslabel = new GreenfootImage(String.valueOf(soundeffects), 25, Color.WHITE, null, Color.WHITE);
+        Button bgmusiclevellabel = new Button(bgmusiclabel);
+        Button soundeffectslevellabel = new Button(soundeffectslabel);
+        addObject(bgmusiclevellabel, 450, 160);
+        addObject(soundeffectslevellabel, 450, 230);
+    }
+    
+    // End of Methods for Settings Screen - Sid
+
+    // ROGER - Observer Pattern
+
+    public void attach(IObserver obj) {
+        observers.add(obj) ;
+    }
+
+    public void detach(IObserver obj) {
+        observers.remove(obj) ;
+    }
+
+    public void notifyObservers(int num) {
+        for (IObserver obj : observers) {
+            obj.update(num);
+        }
+    }
+
+    // END - ROGER - Observer Pattern
 }

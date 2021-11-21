@@ -3,6 +3,56 @@
 
 ## Timeline
 
+### 11/20/2021
+
+#### What we did
+TBD
+
+#### Blockers
+TBD
+
+#### What we will do next
+TBD
+
+
+### 11/19/2021
+
+* Provided PR review feedback on Sid's submission.
+
+### 11/17/2021
+
+#### What we did
+* Our sync was with myself, Roger and Sid.
+* I created a new level in the game, called "Boss Level". As per discussed with the team,
+this is meant to be the final level after the first 2 normal game levels, to serve as
+the finale. So far, it is only a replica of Level 2, but I applied the transition from
+Level 2 to the Boss Level instead of ending the game at that point.
+
+#### Blockers
+* We are a little uncertain about the progress for tasks assigned to Hashmitha and Faizali
+since we have not received updates yet. Specifically, the Leaderboard and the Main Screen
+are potentially in question at this time.
+
+#### What we will do next
+* We will continue to add improvements to the game as assigned to each of us. Mainly, this
+will be the UI screens and the underlying functionality associated with each.
+
+
+### 11/13/2021
+
+#### What we did
+* Identified all User Stories for what we will do in our project.
+* Drilled down the details involved in each story, and identified corresponding tasks.
+* I added all tasks to our Task Board and assigned as we agreed as a team.
+* Discussed trade-offs with some tasks, determined which were high, medium and low priorities.
+
+#### Blockers
+* Still needed to determine whether we could render plain text as an overlay to the screens
+or if we will need to generate graphical assets for each character we need to render.
+
+#### What we will do next
+* Work on our respective tasks.
+
 ### 11/10/2021
 
 #### What we did
