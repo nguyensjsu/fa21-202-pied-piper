@@ -2,14 +2,12 @@ import greenfoot.Greenfoot;
 import greenfoot.GreenfootSound;
 import greenfoot.GreenfootImage;
 import greenfoot.Actor;
-import java.util.ArrayList;
-import java.util.Map;
 
 // 
 // Decompiled by Procyon v0.5.36
 // 
 
-public class Player extends Actor implements ISubject
+public class Player extends Actor
 {
     int counter;
     int speedV;
@@ -23,8 +21,6 @@ public class Player extends Actor implements ISubject
     GreenfootSound laserShot;
     public static final int WEAPON_LASER = 1;
     public static final int WEAPON_BULLET = 2;
-
-    private ArrayList<IObserver> observers = new ArrayList<>() ;
     
     public Player() {
         this.counter = 0;
@@ -75,7 +71,6 @@ public class Player extends Actor implements ISubject
                 this.getWorld().addObject((Actor)new Explosion(), this.getX(), this.getY());
                 this.showPlayer(false);
                 // Deduct Life Point
-                this.notifyObservers();
                 ((GameWorld)this.getWorld()).takeLife();
             }
         }
@@ -126,22 +121,6 @@ public class Player extends Actor implements ISubject
     
     public void resetLocation() {
         this.setLocation(83, 215);
-    }
-
-    // ROGER - Observer Pattern
-
-    public void attach(IObserver obj) {
-        observers.add(obj) ;
-    }
-
-    public void detach(IObserver obj) {
-        observers.remove(obj) ;
-    }
-
-    public void notifyObservers() {
-        for (IObserver obj : observers) {
-            obj.update();
-        }
     }
 
 }

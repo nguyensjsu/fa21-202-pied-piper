@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=IDebugObserver
+comment1.params=
+comment1.target=java.util.Map\ getData()
+comment2.params=key\ val
+comment2.target=void\ update(java.lang.String,\ java.lang.Integer)
+comment3.params=data
+comment3.target=void\ update(java.util.Map)
+comment4.params=
+comment4.target=void\ showData()
+comment5.params=
+comment5.target=void\ clearData()
+numComments=6
