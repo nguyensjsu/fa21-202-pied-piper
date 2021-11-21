@@ -35,6 +35,7 @@ public class GameWorld extends World implements ISubject, IObserver
 
     // Roger - Added life observer
     IObserver lifeObserver;
+    IObserver scoreObserver;
     private ArrayList<IObserver> observers = new ArrayList<>() ;
 
     // John - track debug data within a game level
@@ -73,10 +74,13 @@ public class GameWorld extends World implements ISubject, IObserver
         this.addObject((Actor)(this.startScreen = new StartScreen()), 300, 200);
         this.addObject((Actor)(this.player = new Player()), 83, 215);
 
-        // Roger - Create and attach life observer
+        // Roger - Create and attach life and score observers
         this.addObject((Actor)(this.lifeObserver =
-                new LifeObserver(this, this.playerLives)), 300, 50);
-        this.attach(this.lifeObserver);
+                new LifeObserver(this, this.playerLives)), 250, 50);
+        this.attach(this.lifeObserver); // observers.get(0)
+        this.addObject((Actor)(this.scoreObserver =
+                new ScoreObserver(this, this.playerScore)), 350, 50);
+        this.attach(this.scoreObserver); // observers.get(1)
         this.showPlayer(false);
 
         this.addObject((Actor)(this.debugObserver = new DebugObserver()), 500, 50);
@@ -187,7 +191,7 @@ public class GameWorld extends World implements ISubject, IObserver
     public void takeLife() {
         // Deduct life point
         --this.playerLives;
-        this.notifyObservers(this.playerLives);
+        this.notifyObservers("life", this.playerLives);
         if (this.playerLives == 0) {
             this.endGame();
         }
@@ -220,12 +224,21 @@ public class GameWorld extends World implements ISubject, IObserver
         this.playerScore = 0;
         this.debugObserver.clearData();
         // Update/reset life observer
-        this.notifyObservers(this.playerLives);
+        this.notifyObservers("life", this.playerLives);
+        this.notifyObservers("score", this.playerScore);
+        this.showPlayer(false);
     }
     
     public void showPlayer(final boolean b) {
         this.player.showPlayer(b);
         this.lifeObserver.showState(b);
+        this.scoreObserver.showState(b);
+    }
+
+    // New method to update player score
+    private void updateScore(int num) {
+        this.playerScore += num;
+        this.notifyObservers("score", this.playerScore);
     }
 
     // Sid - added methods to support functioning of settings page
@@ -283,15 +296,16 @@ public class GameWorld extends World implements ISubject, IObserver
         observers.remove(obj) ;
     }
 
-    public void notifyObservers(int num) {
-        for (IObserver obj : observers) {
-            obj.update(num);
-        }
+    public void notifyObservers(String obs, int num) {
+        if (obs == "life")
+            observers.get(0).update(num);
+        else if (obs == "score")
+            observers.get(1).update(num);
     }
 
     // As the Observer
     public void update(int num) {
-        this.playerScore += num;
+        this.updateScore(num);
     }
 
     public void showState(final boolean b) {

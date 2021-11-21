@@ -36,7 +36,7 @@ public class Laser extends Actor implements ISubject
         if (a != null) {
             // Lazer hit a UFO
             debugObserver.update("numHits", 1);
-            notifyObservers(1); // Default score per hit is 1 at the moment
+            notifyObservers(null, 1); // Default score per hit is 1 at the moment
             this.getWorld().addObject((Actor)new Explosion(), a.getX(), a.getY());
             this.getWorld().removeObject((Actor)a);
             this.getWorld().removeObject((Actor)this);
@@ -55,7 +55,7 @@ public class Laser extends Actor implements ISubject
         observers.remove(obj) ;
     }
 
-    public void notifyObservers(int num) {
+    public void notifyObservers(String str, int num) {
         for (IObserver obj : observers) {
             obj.update(num);
         }

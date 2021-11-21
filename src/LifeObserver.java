@@ -17,6 +17,7 @@ public class LifeObserver extends Actor implements IObserver {
 
     public void update(int num) {
         this.lives = num;
+        this.showState(true);
     }
 
     public void showState(final boolean b) {
