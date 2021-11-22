@@ -8,11 +8,9 @@ import greenfoot.Color;
 public class LifeObserver extends Actor implements IObserver {
 
     protected int lives;
-    protected World subject; // not really in use at the moment
 
-    public LifeObserver( World theSubject, int lives ) {
+    public LifeObserver(int lives ) {
         this.lives = lives;
-        this.subject = theSubject ;
     }
 
     public void update(int num) {

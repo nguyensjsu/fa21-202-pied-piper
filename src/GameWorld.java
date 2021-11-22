@@ -76,10 +76,10 @@ public class GameWorld extends World implements ISubject, IObserver
 
         // Roger - Create and attach life and score observers
         this.addObject((Actor)(this.lifeObserver =
-                new LifeObserver(this, this.playerLives)), 250, 50);
+                new LifeObserver(this.playerLives)), 250, 50);
         this.attach(this.lifeObserver); // observers.get(0)
         this.addObject((Actor)(this.scoreObserver =
-                new ScoreObserver(this, this.playerScore)), 350, 50);
+                new ScoreObserver(this.playerScore)), 350, 50);
         this.attach(this.scoreObserver); // observers.get(1)
         this.showPlayer(false);
 
