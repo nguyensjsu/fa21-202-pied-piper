@@ -55,7 +55,7 @@ public class Laser extends Actor implements ISubject
         observers.remove(obj) ;
     }
 
-    public void notifyObservers(String str, int num) {
+    public void notifyObservers(Enum o, int num) {
         for (IObserver obj : observers) {
             obj.update(num);
         }

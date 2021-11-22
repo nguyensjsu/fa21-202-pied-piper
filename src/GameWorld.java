@@ -1,14 +1,15 @@
 import java.util.Collection;
 import java.util.TimerTask;
 import java.util.List;
+import java.util.Timer;
+import java.util.EnumMap;
 import greenfoot.Greenfoot;
 import greenfoot.Actor;
 import greenfoot.GreenfootSound;
-import java.util.Timer;
 import greenfoot.World;
 import greenfoot.GreenfootImage;
 import greenfoot.Color;
-import java.util.ArrayList;
+
 
 // 
 // Decompiled by Procyon v0.5.36
@@ -36,7 +37,7 @@ public class GameWorld extends World implements ISubject, IObserver
     // Roger - Added life observer
     IObserver lifeObserver;
     IObserver scoreObserver;
-    private ArrayList<IObserver> observers = new ArrayList<>() ;
+    private EnumMap<Observer, IObserver> obsMap = new EnumMap<>(Observer.class);
 
     // John - track debug data within a game level
     IDebugObserver debugObserver;
@@ -51,6 +52,10 @@ public class GameWorld extends World implements ISubject, IObserver
     Button soundeffectsminus;
     private final static int VOLUME_STEP = 5;
     // over - Sid
+
+    private enum Observer {
+        LIFE, SCORE
+    }
     
     public GameWorld() {
         super(600, 400, 1, false);
@@ -77,10 +82,10 @@ public class GameWorld extends World implements ISubject, IObserver
         // Roger - Create and attach life and score observers
         this.addObject((Actor)(this.lifeObserver =
                 new LifeObserver(this.playerLives)), 250, 50);
-        this.attach(this.lifeObserver); // observers.get(0)
+        this.attach(Observer.LIFE, this.lifeObserver);
         this.addObject((Actor)(this.scoreObserver =
                 new ScoreObserver(this.playerScore)), 350, 50);
-        this.attach(this.scoreObserver); // observers.get(1)
+        this.attach(Observer.SCORE, this.scoreObserver);
         this.showPlayer(false);
 
         this.addObject((Actor)(this.debugObserver = new DebugObserver()), 500, 50);
@@ -191,7 +196,7 @@ public class GameWorld extends World implements ISubject, IObserver
     public void takeLife() {
         // Deduct life point
         --this.playerLives;
-        this.notifyObservers("life", this.playerLives);
+        this.notifyObservers(Observer.LIFE, this.playerLives);
         if (this.playerLives == 0) {
             this.endGame();
         }
@@ -224,8 +229,8 @@ public class GameWorld extends World implements ISubject, IObserver
         this.playerScore = 0;
         this.debugObserver.clearData();
         // Update/reset life observer
-        this.notifyObservers("life", this.playerLives);
-        this.notifyObservers("score", this.playerScore);
+        this.notifyObservers(Observer.LIFE, this.playerLives);
+        this.notifyObservers(Observer.SCORE, this.playerScore);
         this.showPlayer(false);
     }
     
@@ -238,7 +243,7 @@ public class GameWorld extends World implements ISubject, IObserver
     // New method to update player score
     private void updateScore(int num) {
         this.playerScore += num;
-        this.notifyObservers("score", this.playerScore);
+        this.notifyObservers(Observer.SCORE, this.playerScore);
     }
 
     // Sid - added methods to support functioning of settings page
@@ -289,18 +294,19 @@ public class GameWorld extends World implements ISubject, IObserver
     // ROGER - Observer Pattern
     // As the Subject
     public void attach(IObserver obj) {
-        observers.add(obj) ;
+        // Empty
+    }
+
+    public void attach(Observer o, IObserver obj) {
+        obsMap.put(o, obj);
     }
 
     public void detach(IObserver obj) {
-        observers.remove(obj) ;
+        // Empty
     }
 
-    public void notifyObservers(String obs, int num) {
-        if (obs == "life")
-            observers.get(0).update(num);
-        else if (obs == "score")
-            observers.get(1).update(num);
+    public void notifyObservers(Enum o, int num) {
+        obsMap.get(o).update(num);
     }
 
     // As the Observer
