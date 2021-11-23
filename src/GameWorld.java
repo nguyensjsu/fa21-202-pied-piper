@@ -178,8 +178,8 @@ public class GameWorld extends World implements ISubject
                 this.gameMusic.playLoop();
             }
             this.runningLevel = 1;
-            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
-            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            //(this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
+            (this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
         }
     }
     
