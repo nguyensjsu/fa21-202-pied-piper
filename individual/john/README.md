@@ -6,13 +6,18 @@
 ### 11/20/2021
 
 #### What we did
-TBD
+* I made code changes to the game levels so that it incorporates a debug observer, which
+updates an overlay of debug information on the screen during game play. I refactored the
+level classes to rely on a base class so that common aspects of each are in one place.
+* Earlier during the in-person class, our team discussed the need to make progress on
+two areas - the leaderboard and the main screen.
 
 #### Blockers
-TBD
+* None, but concerns around contributions from a couple of members are to be monitored.
 
 #### What we will do next
-TBD
+* Continue on our respective tasks, but in particular, we will want to see progress on
+the the leaderboard and the main screen.
 
 
 ### 11/19/2021
