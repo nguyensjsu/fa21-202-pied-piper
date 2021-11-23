@@ -13,6 +13,10 @@ public class ScoreObserver extends Actor implements IObserver {
         this.score = score;
     }
 
+    public void update() {
+        // Empty
+    }
+
     public void update(int num) {
         this.score = num;
         this.showState(true);

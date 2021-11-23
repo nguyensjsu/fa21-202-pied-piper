@@ -13,6 +13,10 @@ public class LifeObserver extends Actor implements IObserver {
         this.lives = lives;
     }
 
+    public void update() {
+        // Empty
+    }
+
     public void update(int num) {
         this.lives = num;
         this.showState(true);

@@ -305,11 +305,19 @@ public class GameWorld extends World implements ISubject, IObserver
         // Empty
     }
 
+    public void notifyObservers() {
+        // Empty
+    }
+
     public void notifyObservers(Enum o, int num) {
         obsMap.get(o).update(num);
     }
 
     // As the Observer
+    public void update() {
+        // Empty
+    }
+
     public void update(int num) {
         this.updateScore(num);
     }
