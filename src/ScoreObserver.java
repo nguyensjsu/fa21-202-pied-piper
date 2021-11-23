@@ -5,12 +5,12 @@ import greenfoot.World;
 import greenfoot.Actor;
 import greenfoot.Color;
 
-public class LifeObserver extends Actor implements IObserver {
+public class ScoreObserver extends Actor implements IObserver {
 
-    protected int lives;
+    protected int score;
 
-    public LifeObserver(int lives ) {
-        this.lives = lives;
+    public ScoreObserver(int score) {
+        this.score = score;
     }
 
     public void update() {
@@ -18,7 +18,7 @@ public class LifeObserver extends Actor implements IObserver {
     }
 
     public void update(int num) {
-        this.lives = num;
+        this.score = num;
         this.showState(true);
     }
 
@@ -26,7 +26,7 @@ public class LifeObserver extends Actor implements IObserver {
         if (b) {
             this.setImage(
                     new GreenfootImage(
-                            "LIVES: " + this.lives, 25,
+                            "SCORE: " + this.score, 25,
                             Color.ORANGE, null, Color.WHITE));
         }
         else {
