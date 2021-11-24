@@ -11,6 +11,7 @@ import greenfoot.GreenfootSound;
 import greenfoot.World;
 import greenfoot.GreenfootImage;
 import greenfoot.Color;
+import java.lang.String;
 
 
 // 
@@ -119,7 +120,7 @@ public class GameWorld extends World implements ISubject, IObserver
         playerAlias = "AAA";
         // over - Sid
         
-        final Class[] x = {LeaderboardScreen.class, Button.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class};
+        final Class[] x = {TransitionScreen.class, LeaderboardScreen.class, Button.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class};
         this.setPaintOrder(x);
     }
     
@@ -185,11 +186,19 @@ public class GameWorld extends World implements ISubject, IObserver
                 break;
             }
             case 7:{
-                this.addObject((Actor)new TransitionScreen(), 300, 200);
+                final List l = this.getObjects((Class)Ufo.class);
+                if (!l.isEmpty()) {
+                    this.removeObjects((Collection)l);
+                }
+                this.addObject((Actor)new TransitionScreen(playerAlias, playerScore), 300, 200);
                 // playerAlias = Greenfoot.ask("Please input your player alias");
                 if (Greenfoot.isKeyDown("enter")) {
                     // this.timer.cancel();
                     // this.resetGame();
+                    final List l1 = this.getObjects((Class)TransitionScreen.class);
+                    if (!l1.isEmpty()) {
+                        this.removeObjects((Collection)l1);
+                    }
                     this.gameState = 8;
                     break;
                 }
@@ -219,12 +228,12 @@ public class GameWorld extends World implements ISubject, IObserver
         this.debugObserver.clearData();
 
         if(playerLives == 0){
-            this.addObject((Actor)new FinishScreen(), 300, 200);
-            this.gameState = 6;
-        }
-        else{
             this.addObject((Actor)new GameOverScreen(), 300, 200);
             this.gameState = 2;
+        }
+        else{
+            this.addObject((Actor)new FinishScreen(), 300, 200);
+            this.gameState = 6;
         }
 
         if (this.gameMusic.isPlaying()) {

@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.lang.*;
 
 /**
  * Write a description of class TransitionScreen here.
@@ -8,10 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TransitionScreen extends Actor
 {
-    String playerAlias;
-    public TransitionScreen()
+    GreenfootImage alias;
+    public TransitionScreen(String playeralias, int playerscore)
     {
-        
+        this.setImage(new GreenfootImage("Alias: " + playeralias + "\nScore: " + String.valueOf(playerscore), 36, Color.CYAN, null, Color.WHITE));
     }
     /**
      * Act - do whatever the TransitionScreen wants to do. This method is called whenever
