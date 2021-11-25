@@ -9,10 +9,11 @@ import java.lang.*;
  */
 public class TransitionScreen extends Actor
 {
+    int counter;
     GreenfootImage alias;
-    public TransitionScreen(String playeralias, int playerscore)
+    public TransitionScreen(String alias, int playerscore)
     {
-        this.setImage(new GreenfootImage("Alias: " + playeralias + "\nScore: " + String.valueOf(playerscore), 36, Color.CYAN, null, Color.WHITE));
+        this.alias = new GreenfootImage("Alias: " + alias + "\nScore: " + String.valueOf(playerscore), 36, Color.CYAN, null, Color.WHITE);
     }
     /**
      * Act - do whatever the TransitionScreen wants to do. This method is called whenever
@@ -20,6 +21,21 @@ public class TransitionScreen extends Actor
      */
     public void act()
     {
-        
+        switch (this.counter) {
+            case 16: {
+                this.setImage(this.alias);
+                this.counter = -1;
+                break;
+            }
+        }
+        final int t = this.getImage().getTransparency();
+        if (t > 1) {
+            this.getImage().setTransparency(t - 1);
+        }
+        else {
+            this.alias = null;
+            this.getWorld().removeObject((Actor)this);
+        }
+        ++this.counter;
     }
 }
