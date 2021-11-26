@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=MegaUfo
+comment1.params=speed
+comment1.target=MegaUfo(int)
+comment2.params=
+comment2.target=boolean\ hit()
+comment3.params=
+comment3.target=void\ act()
+numComments=4

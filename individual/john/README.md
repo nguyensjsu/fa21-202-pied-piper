@@ -3,6 +3,28 @@
 
 ## Timeline
 
+### 11/24/2021
+
+#### What we did
+
+#### Blockers
+
+#### What we will do next
+
+### 11/21/2021
+
+#### What we did
+I worked on the Boss Level by introducing different ufo attack patterns, with a swarming effect.
+I made changes to the level to make it more difficult, which is the goal of this final level.
+I committed my changes into my branch.
+
+#### Blockers
+None
+
+#### What we will do next
+I will continue by adding a large enemy that does not get destroyed until a threshold of multiple hits.
+
+
 ### 11/20/2021
 
 #### What we did

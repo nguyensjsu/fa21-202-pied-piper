@@ -4,16 +4,18 @@ import java.util.*;
 
 public class BossLevel_Task extends BaseLevel {
 
+    private Random random;
     public BossLevel_Task(final GameWorld t) {
         super(t);
+        this.random = new Random();
     }
 
     private static final boolean ENABLE_PHASE_1 = true;
-    private static final boolean ENABLE_PHASE_2 = true;
-    private static final boolean ENABLE_PHASE_3 = true;
-    private static final boolean ENABLE_PHASE_4 = true;
-    private static final boolean ENABLE_PHASE_5 = true;
-    private static final boolean ENABLE_PHASE_6 = true;
+    private static final boolean ENABLE_PHASE_2 = false;
+    private static final boolean ENABLE_PHASE_3 = false;
+    private static final boolean ENABLE_PHASE_4 = false;
+    private static final boolean ENABLE_PHASE_5 = false;
+    private static final boolean ENABLE_PHASE_6 = false;
 
     @Override
     public void run() {
@@ -47,132 +49,36 @@ public class BossLevel_Task extends BaseLevel {
                     break;
                 }
                 case 1: {
-                    updateDebugData();
-                    ++this.counter;
-                    if (ENABLE_PHASE_1) {
-                        if (this.counter < 6) {
-                            this.theWorld.addObject((Actor) new Ufo(1, 3), 600, 250);
-                            break;
-                        }
-                        if (this.counter == 6) {
-                            this.theWorld.addObject((Actor) new Sun(), 800, 360);
-                            break;
-                        }
-                    }
-                    this.onBreak = true;
+                    pattern1();
                     break;
                 }
                 case 2: {
-                    updateDebugData();
-                    ++this.counter;
-                    if (ENABLE_PHASE_2) {
-                        if (this.counter < 6) {
-                            this.theWorld.addObject((Actor) new Ufo(2, 3), 600, 380);
-                            break;
-                        }
-                    }
-                    this.onBreak = true;
+                    pattern2();
                     break;
                 }
                 case 3: {
-                    updateDebugData();
-                    ++this.counter;
-                    if (ENABLE_PHASE_3) {
-                        if (this.counter < 6) {
-                            this.theWorld.addObject((Actor) new Ufo(3, 3), 600, 20);
-                            break;
-                        }
-                    }
-                    this.onBreak = true;
+                    pattern3();
                     break;
                 }
                 case 4: {
-                    updateDebugData();
-                    ++this.counter;
-                    if (ENABLE_PHASE_4) {
-                        if (this.counter == 1) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 100);
-                            break;
-                        }
-                        if (this.counter == 2) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 300);
-                            break;
-                        }
-                        if (this.counter == 3) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 150);
-                            break;
-                        }
-                        if (this.counter == 4) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 250);
-                            break;
-                        }
-                        if (this.counter == 5) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 200);
-                            break;
-                        }
-                    }
-                    this.onBreak = true;
+                    pattern4();
                     break;
                 }
                 case 5: {
-                    updateDebugData();
-                    ++this.counter;
-                    if (ENABLE_PHASE_5) {
-                        if (this.counter == 1) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 100);
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 300);
-                            break;
-                        }
-                        if (this.counter == 2) {
-                            this.theWorld.addObject((Actor) new Sun(), 800, 360);
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 150);
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 250);
-                            break;
-                        }
-                        if (this.counter == 3) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 200);
-                            break;
-                        }
-                    }
-                    this.onBreak = true;
+                    pattern5();
                     break;
                 }
                 case 6: {
-                    updateDebugData();
-                    ++this.counter;
-                    if (ENABLE_PHASE_6) {
-                        if (this.counter == 1) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 200);
-                            break;
-                        }
-                        if (this.counter == 2) {
-                            this.theWorld.addObject((Actor) new Ufo(2), 600, 380);
-                            this.theWorld.addObject((Actor) new Ufo(3), 600, 20);
-                            break;
-                        }
-                        if (this.counter == 3) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 200);
-                            break;
-                        }
-                        if (this.counter == 4) {
-                            this.theWorld.addObject((Actor) new Ufo(2), 600, 380);
-                            this.theWorld.addObject((Actor) new Ufo(3), 600, 20);
-                            break;
-                        }
-                        if (this.counter == 5) {
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 140);
-                            this.theWorld.addObject((Actor) new Ufo(0), 600, 260);
-                            break;
-                        }
-                    }
-                    this.onBreak = true;
+                    pattern6();
                     break;
                 }
                 case 7: {
-                    updateDebugData();
                     ++this.counter;
                     final List l = this.theWorld.getObjects((Class)Ufo.class);
-                    if (l.isEmpty()) {
+                    debugData.put("enemiesLeft", l.size());
+                    updateDebugData();
+                    //final List l2 = this.theWorld.getObjects((Class)MegaUfo.class);
+                    if (l.isEmpty()) { // && l2.isEmpty()) {
                         this.theWorld.endGame();
                         //this.theWorld.endLevel();
                         this.onBreak = true;
@@ -182,5 +88,187 @@ public class BossLevel_Task extends BaseLevel {
                 }
             }
         }
+    }
+
+    private void patternEmpty() {
+        updateDebugData();
+        ++this.counter;
+        this.onBreak = true;
+    }
+
+    private void patternDebug() {
+        pattern5();
+    }
+
+    private void pattern1() {
+        updateDebugData();
+        ++this.counter;
+        this.theWorld.addObject((Actor) new MegaUfo(1), 600, 250);
+        spawnRandomAttacks();
+        //pattern1Core();
+        this.onBreak = true;
+    }
+
+    private void pattern2() {
+        updateDebugData();
+        ++this.counter;
+        pattern2Core();
+        this.onBreak = true;
+    }
+
+    private void pattern3() {
+        updateDebugData();
+        ++this.counter;
+        spawnRandomAttacks();
+        //pattern3Core();
+        this.onBreak = true;
+    }
+
+    private void pattern4() {
+        updateDebugData();
+        ++this.counter;
+        pattern4Core();
+        this.onBreak = true;
+    }
+
+    private void pattern1Core() {
+        if (this.counter < 6) {
+            this.theWorld.addObject((Actor) new Ufo(1, 1, Ufo.DEFAULT_SPEED), 600, 250);
+            this.theWorld.addObject((Actor) new Ufo(1, 2, Ufo.SPEED_PLUS_ONE), 600, 250);
+            this.theWorld.addObject((Actor) new Ufo(1, 3, Ufo.SPEED_MAX), 600, 250);
+            return;
+        }
+        if (this.counter == 6) {
+            this.theWorld.addObject((Actor) new RedSun(), 800, 360);
+            return;
+        }
+    }
+
+    private void pattern2Core() {
+        if (this.counter < 6) {
+            this.theWorld.addObject((Actor) new Ufo(2, 1, Ufo.DEFAULT_SPEED), 600, 300);
+            this.theWorld.addObject((Actor) new Ufo(2, 2, Ufo.SPEED_MEDIUM), 600, 300);
+            this.theWorld.addObject((Actor) new Ufo(2, 3, Ufo.SPEED_PLUS_ONE), 600, 300);
+            return;
+        }
+    }
+
+    private void pattern3Core() {
+        if (this.counter < 6) {
+            this.theWorld.addObject((Actor) new Ufo(3, 1, Ufo.SPEED_MAX), 600, 20);
+            this.theWorld.addObject((Actor) new Ufo(3, 2, Ufo.SPEED_PLUS_ONE), 600, 20);
+            this.theWorld.addObject((Actor) new Ufo(3, 3, Ufo.DEFAULT_SPEED), 600, 20);
+            this.theWorld.addObject((Actor) new Ufo(2, 1, Ufo.SPEED_MAX), 600, 20);
+            this.theWorld.addObject((Actor) new Ufo(1, 3, Ufo.SPEED_MEDIUM), 600, 20);
+            return;
+        }
+    }
+
+    private void pattern4Core() {
+        if (this.counter == 1) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 100);
+            this.theWorld.addObject((Actor) new Ufo(3, 3, Ufo.SPEED_MEDIUM), 600, 150);
+            this.theWorld.addObject((Actor) new Ufo(3, 1, Ufo.SPEED_MAX), 600, 250);
+            return;
+        }
+        if (this.counter == 2) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 300);
+            this.theWorld.addObject((Actor) new Ufo(3, 3, Ufo.SPEED_MEDIUM), 600, 250);
+            this.theWorld.addObject((Actor) new Ufo(3, 1, Ufo.SPEED_MAX), 600, 250);
+            return;
+        }
+        if (this.counter == 3) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 150);
+            this.theWorld.addObject((Actor) new Ufo(3, 3, Ufo.SPEED_MEDIUM), 600, 250);
+            this.theWorld.addObject((Actor) new Ufo(2, 2, Ufo.SPEED_MAX), 600, 250);
+            return;
+        }
+        if (this.counter == 4) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 250);
+            this.theWorld.addObject((Actor) new Ufo(3, 3, Ufo.SPEED_MEDIUM), 600, 250);
+            this.theWorld.addObject((Actor) new Ufo(3, 1, Ufo.SPEED_MAX), 600, 300);
+            return;
+        }
+        if (this.counter == 5) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 200);
+            this.theWorld.addObject((Actor) new Ufo(3, 3, Ufo.SPEED_MEDIUM), 600, 250);
+            this.theWorld.addObject((Actor) new Ufo(3, 1, Ufo.SPEED_MAX), 600, 250);
+            return;
+        }
+    }
+
+    private void pattern5Core() {
+        if (this.counter == 1) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 100);
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 300);
+            return;
+        }
+        if (this.counter == 2) {
+            this.theWorld.addObject((Actor) new RedSun(), 800, 360);
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 150);
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 250);
+            return;
+        }
+        if (this.counter == 3) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 200);
+            return;
+        }
+    }
+
+    private void pattern6Core() {
+        if (this.counter == 1) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 200);
+            return;
+        }
+        if (this.counter == 2) {
+            this.theWorld.addObject((Actor) new Ufo(2), 600, 380);
+            this.theWorld.addObject((Actor) new Ufo(3), 600, 20);
+            return;
+        }
+        if (this.counter == 3) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 200);
+            return;
+        }
+        if (this.counter == 4) {
+            this.theWorld.addObject((Actor) new Ufo(2), 600, 380);
+            this.theWorld.addObject((Actor) new Ufo(3), 600, 20);
+            return;
+        }
+        if (this.counter == 5) {
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 140);
+            this.theWorld.addObject((Actor) new Ufo(0), 600, 260);
+            return;
+        }
+    }
+
+    private void pattern5() {
+        updateDebugData();
+        ++this.counter;
+        //this.theWorld.addObject((Actor) new MegaUfo(1), 600, 250);
+        spawnRandomAttacks();
+        this.onBreak = true;
+    }
+
+    private void pattern6() {
+        updateDebugData();
+        ++this.counter;
+        pattern6Core();
+        this.onBreak = true;
+    }
+
+    private void spawnRandomAttacks() {
+        new Thread(() -> {
+            for (int i=0; i<20; i++) {
+                random = new Random();
+                int y = random.nextInt(300);
+                int speed = random.nextInt(8) + 1;
+                int pattern = random.nextInt(4);
+                int type = random.nextInt(3) + 1;
+                this.theWorld.addObject((Actor) new Ufo(pattern, type, speed), 600, y);
+                try {
+                    Thread.sleep(y);
+                } catch (InterruptedException e) {}
+            }
+        }).start();
     }
 }
