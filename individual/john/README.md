@@ -3,26 +3,45 @@
 
 ## Timeline
 
+### 11/26/2021
+
+#### What we did
+* I concluded the Boss Level work with a scoring integration, PR submitted and merged all of my accumulated
+changes back to main. I worked with Roger to resolve some integration bugs that was from my side.
+
+#### Blockers
+* The team received an update on some leaderboard work, but needs to be integrated into an actual GUI, as
+well as connected to the Finish screen.
+
+#### What we will do next
+* We outlined all remaining outstanding tasks between now and our presentation day. We plan to meet a few
+times before then to make sure we close the loop on documentation, videos, source code, etc.
+
 ### 11/24/2021
 
 #### What we did
+* I Worked on the last part of the Boss Level, enabling a larger ufo that does not get destroyed until
+a threshold of hits are achieved.
 
 #### Blockers
+* Concerns about the progress of the Leaderboard and the Start Screen, and planning contingencies in
+case we need to pick up additional tasks among myself, Sid and Roger.
 
 #### What we will do next
+* Circling back on progress at a higher frequency, and focusing on bug fixes and integration work.
 
 ### 11/21/2021
 
 #### What we did
-I worked on the Boss Level by introducing different ufo attack patterns, with a swarming effect.
-I made changes to the level to make it more difficult, which is the goal of this final level.
-I committed my changes into my branch.
+* I worked on the Boss Level by introducing different ufo attack patterns, with a swarming effect.
+* I made changes to the level to make it more difficult, which is the goal of this final level.
+* I committed my changes into my branch.
 
 #### Blockers
-None
+* None
 
 #### What we will do next
-I will continue by adding a large enemy that does not get destroyed until a threshold of multiple hits.
+* I will continue by adding a large enemy that does not get destroyed until a threshold of multiple hits.
 
 
 ### 11/20/2021
