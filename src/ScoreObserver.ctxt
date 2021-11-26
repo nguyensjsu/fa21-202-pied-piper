@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.target=LifeObserver
-comment1.params=lives
-comment1.target=LifeObserver(int)
+comment0.target=ScoreObserver
+comment1.params=score
+comment1.target=ScoreObserver(int)
 comment2.params=num
 comment2.target=void\ update(int)
 comment3.params=b

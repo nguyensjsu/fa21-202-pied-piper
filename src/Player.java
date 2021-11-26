@@ -98,6 +98,8 @@ public class Player extends Actor
         if (Greenfoot.isKeyDown("space") && this.counter > 14) {
             this.counter = 0;
             Laser laser = new Laser(2, debugObserver);
+            // Add gameworld as observer for scoring
+            laser.attach((GameWorld)this.getWorld());
             this.getWorld().addObject((Actor)laser, this.getX() + 24, this.getY() + 4);
             this.laserShot.play();
         }

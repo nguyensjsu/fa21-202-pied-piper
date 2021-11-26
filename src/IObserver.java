@@ -1,6 +1,7 @@
 public interface IObserver {
 
-    void update(int num);
+    void update();
+    void update(int i);
     void showState(final boolean b);
 
 }
