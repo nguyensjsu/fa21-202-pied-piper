@@ -10,6 +10,11 @@ import java.util.concurrent.*;
 public class Laser extends Actor implements ISubject
 {
     int type;
+    private int unitPoints = 1;
+
+    private static final int UFO_UNIT_POINTS = 1;
+    private static final int MEGAUFO_UNIT_POINTS = 20;
+
     private ArrayList<IObserver> observers = new ArrayList<>() ;
 
     public Laser() {
@@ -35,13 +40,13 @@ public class Laser extends Actor implements ISubject
     public void act() {
         this.setLocation(this.getX() + 5, this.getY());
         final Ufo ufo = (Ufo)this.getOneIntersectingObject((Class)Ufo.class);
-        //final MegaUfo megaUfo = (MegaUfo)this.getOneIntersectingObject((Class)MegaUfo.class);
+        final MegaUfo megaUfo = (MegaUfo)this.getOneIntersectingObject((Class)MegaUfo.class);
         if (ufo != null) {
             processUfoHit(ufo);
         }
-        //else if (megaUfo != null) {
-        //    megaUfoHit(megaUfo);
-        //}
+        else if (megaUfo != null) {
+            megaUfoHit(megaUfo);
+        }
         else if (this.getX() > this.getWorld().getWidth()) {
             this.getWorld().removeObject((Actor)this);
         }
@@ -79,10 +84,17 @@ public class Laser extends Actor implements ISubject
                 int x = megaUfo.getX() + (i%2 == 0 ? i : -i);
                 int y = this.getY() + (i%2 == 0 ? i : -i);
                 this.getWorld().addObject((Actor)new Explosion(), x, y);
+                scoreMegaUfoHit();
             }
             isDestroyed = true;
         }
         return isDestroyed;
+    }
+
+    private void scoreMegaUfoHit() {
+        unitPoints = MEGAUFO_UNIT_POINTS;
+        notifyObservers();
+        unitPoints = UFO_UNIT_POINTS;
     }
 
     // ROGER - Observer Pattern
@@ -97,7 +109,7 @@ public class Laser extends Actor implements ISubject
     public void notifyObservers() {
         // Default score per hit is 1 at the moment
         for (IObserver obj : observers) {
-            obj.update(1);
+            obj.update(unitPoints);
         }
     }
 

@@ -103,6 +103,7 @@ public class BossLevel_Task extends BaseLevel {
     private void pattern1() {
         updateDebugData();
         ++this.counter;
+        this.theWorld.addObject((Actor) new MegaUfo(1), 600, 250);
         spawnRandomAttacks();
         //pattern1Core();
         this.onBreak = true;

@@ -6,7 +6,7 @@ public class MegaUfo extends Actor {
     double d;
     int speed;
     private int hit;
-    private static final int MAX_HITS = 10;
+    private static final int MAX_HITS = 5;
 
     public MegaUfo(final int speed) {
         this.y = 150;

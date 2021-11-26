@@ -2,8 +2,10 @@
 comment0.target=ScoreObserver
 comment1.params=score
 comment1.target=ScoreObserver(int)
-comment2.params=num
-comment2.target=void\ update(int)
-comment3.params=b
-comment3.target=void\ showState(boolean)
-numComments=4
+comment2.params=
+comment2.target=void\ update()
+comment3.params=num
+comment3.target=void\ update(int)
+comment4.params=b
+comment4.target=void\ showState(boolean)
+numComments=5
