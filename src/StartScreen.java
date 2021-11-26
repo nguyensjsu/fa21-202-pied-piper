@@ -13,7 +13,7 @@ public class StartScreen extends Actor
     
     public StartScreen() {
         this.i = new GreenfootImage("press_space.png");
-        this.bg = new GreenfootImage("startscreen.png");
+        this.bg = new GreenfootImage("startscreen-qtype.png");
         this.counter = 0;
     }
     
