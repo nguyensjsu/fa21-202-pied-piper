@@ -84,8 +84,8 @@ public class Laser extends Actor implements ISubject
                 int x = megaUfo.getX() + (i%2 == 0 ? i : -i);
                 int y = this.getY() + (i%2 == 0 ? i : -i);
                 this.getWorld().addObject((Actor)new Explosion(), x, y);
-                scoreMegaUfoHit();
             }
+            scoreMegaUfoHit();
             isDestroyed = true;
         }
         return isDestroyed;
