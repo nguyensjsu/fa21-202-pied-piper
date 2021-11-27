@@ -119,7 +119,7 @@ public class BossLevel_Task extends BaseLevel {
         ++this.counter;
         this.theWorld.addObject((Actor) new MegaUfo(1), 600, 250);
         spawnRandomAttacks();
-        //pattern1Core();
+//        pattern1Core();
         this.onBreak = true;
     }
 
@@ -271,6 +271,9 @@ public class BossLevel_Task extends BaseLevel {
     }
 
     private void spawnRandomAttacks() {
+        // This causes UFOs to be spawned, as suggested, on a separate thread.
+        // Therefore, it seems that when the level is reset, this method is still running.
+        // This causes random UFOs to continue spawning in during the "Now Entering" phase.
         new Thread(() -> {
             for (int i=0; i<20; i++) {
                 random = new Random();
