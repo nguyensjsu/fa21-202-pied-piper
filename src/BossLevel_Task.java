@@ -38,6 +38,18 @@ public class BossLevel_Task extends BaseLevel {
                         this.theWorld.showPlayer(false);
                         this.entering.setImage("boss_level.png");
                         this.theWorld.addObject(this.entering, 300, 200);
+                        List l = this.theWorld.getObjects((Class)RedSun.class);
+                        if (l != null) {
+                            this.theWorld.removeObjects((Collection)l);
+                        }
+                        l = this.theWorld.getObjects((Class)Ufo.class);
+                        if (l != null) {
+                            this.theWorld.removeObjects((Collection)l);
+                        }
+                        l = this.theWorld.getObjects((Class)MegaUfo.class);
+                        if (l != null) {
+                            this.theWorld.removeObjects((Collection)l);
+                        }
                         break;
                     }
                     if (this.counter == 6) {
