@@ -38,6 +38,8 @@ public class BossLevel_Task extends BaseLevel {
                         this.theWorld.showPlayer(false);
                         this.entering.setImage("boss_level.png");
                         this.theWorld.addObject(this.entering, 300, 200);
+                        // Removes existing UFOs and objects upon reset
+                        // However, it is still spawning the next wave.
                         List l = this.theWorld.getObjects((Class)RedSun.class);
                         if (l != null) {
                             this.theWorld.removeObjects((Collection)l);
