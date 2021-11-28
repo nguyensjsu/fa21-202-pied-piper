@@ -13,6 +13,9 @@ public class AttackPattern1 implements AttackStrategy {
     }
 
     protected void spawnRandomAttacks(GameWorld theWorld) {
+        // This causes UFOs to be spawned, as suggested, on a separate thread.
+        // Therefore, it seems that when the level is reset, this method is still running.
+        // This causes random UFOs to continue spawning in during the "Now Entering" phase.
         new Thread(() -> {
             for (int i=0; i<20; i++) {
                 random = new Random();
