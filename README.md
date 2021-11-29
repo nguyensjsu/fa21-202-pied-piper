@@ -92,6 +92,6 @@ components, to create the game mechanics.
 
 ### Revised Q-TYPE Game Class Diagram
 
-TODO
+![Q-Type Class Diagram](./uml/qtype_class_diagram.png)
 
 
