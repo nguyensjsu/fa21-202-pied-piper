@@ -57,7 +57,16 @@ implementations.
 
 ## High-Level Architecture Diagram
 
-TODO
+![P-Type Class Diagram](./images/cmpe202-piedpiper-qtype-arch-diagram.png)
+
+The game consists of several java source files, and is sometimes collected into a gfar file, similar
+to a tarball or zip file, but proprietary to the Greenfoot. The Greenfoot environment essentially
+provides a runtime system to execute scenarios by loading the compiled class files into memory.
+A scenario represents a single application, and typically this is a game, that can be run within
+the Greenfoot environment. As part of this setup, Greenfoot relies on the Java JDK/JRE 11.x and
+its core `greenfoot.jar` library components that provide a baseline for the scenario to run with.
+In our case, the Q-TYPE game runs a scenario that builds on top of the `GameWorld` and `Actor` core
+components, to create the game mechanics.
 
 ## Individual Journals
 
