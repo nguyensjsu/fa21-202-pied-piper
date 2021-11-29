@@ -12,11 +12,48 @@
 - Customized Space Shooter Arcade Game based on Greenfoot starter code [P-TYPE](https://www.greenfoot.org/scenarios/13388).
 
 ## Summary of Project
-- A summary of your team's project
+
+Our project involved taking an existing Greenfoot game called P-TYPE and customizing it with several
+enhancements. Our team coordinated on a regular basis to tackle a set of User Stories that we converted
+into tangible tasks, and designated each of us to work on concurrently.
+
+This work required us to take the original source code as a starting point, identify several areas where changes
+needed to be made, and applied code changes as appropriate. We followed a branch+merge strategy, where each of
+us worked on our respective branch of changes, and submitted for a Pull Request whenever each of us achieved
+a tangible milestone as identified in our respective assigned tasks. We generally required at least 1-2 peers
+to review the code before merging changes back to the main branch. We created new tickets whenever we identified
+any bugs from subsequent testing, and assigned them to the most appropriate individual to resolve.
+
+The original game we started with was a simple 2-level game with a main (splash) screen. A few keyboard presses
+were in place to be able to start the game, fire at UFOs, and for the player's ship movement in 4 directions
+(up/down/left/right). We enhanced the game so that it was customized with our new name, Q-TYPE, along with the
+ability to adjust some settings (e.g. volume), a new game level, tracking of number of lives and scores, as
+well as a leaderboard. Along with these enhancements, we incorporated a few design patterns as part of the
+implementations.
 
 ## Summary of Key Features
-- A summary of the key features
-  - (include any special design ideas implemented)
+- Customized Main Screen
+  - New name "Q-TYPE" and our group name "PIED PIPER"
+  - Buttons to navigate to the Settings or Leaderboard screens
+- Score Tracking
+  - Tallies a total score based on the number of UFO hits during game play
+  - Utilizes the Observer Pattern
+- Lives Tracking
+  - Tallies the current number of lives remaining for the player during game play
+  - Utilizes the Observer Pattern
+- New Final Game Level, aka Boss Level
+  - A more challenging level with different attack patterns and speeds
+  - A large UFO, aka MegaUFO, that does not die upon a single hit and requires multiple hits
+  - Utilizes the Strategy Pattern for the different attack patterns in this level
+- Finish Screen
+  - Displays the final messaging after game play, and gates qualification to the Leaderboard
+  - Transitions to the Leaderboard
+- Leaderboard Screen
+  - Displays the top 10 players and their associated scores
+  - Utilizes the Iterator Pattern
+- Debug Observer
+  - Provides the ability to overlay different runtime values during gameplay
+  - Utilizes the Observer Pattern
 
 ## High-Level Architecture Diagram
 
@@ -47,3 +84,5 @@ TODO
 ### Revised Q-TYPE Game Class Diagram
 
 TODO
+
+

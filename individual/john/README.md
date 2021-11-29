@@ -6,6 +6,19 @@
 ### 11/26/2021
 
 #### What we did
+* I implemented the Strategy Pattern in the Boss Level of the game, where each phase sets up the appropriate
+attack strategy and attacks based on that underlying attack pattern.
+* Added more info the the main README for our team.
+
+#### Blockers
+* n/a
+
+#### What we will do next
+* I will continue to cover the areas where we need to close things out before our fast-approaching deadline.
+
+### 11/26/2021
+
+#### What we did
 * I concluded the Boss Level work with a scoring integration, PR submitted and merged all of my accumulated
 changes back to main. I worked with Roger to resolve some integration bugs that was from my side.
 
