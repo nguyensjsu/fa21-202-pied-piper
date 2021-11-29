@@ -94,7 +94,10 @@ A closer look at the underlying components within the Greenfoot environment is d
   * Sprint Task Tracker
   * XP Core Value - Communication
 * Roger Kuo
-  * TODO - fill in
+  * Player Life count display - Observer Pattern
+  * Player Score and display - Observer Patterns
+  * Wireframes
+  * Bug fixes and code reviews
 * Siddhant Satish Parma
   * TODO - fill in
 * Faizali Mulla
