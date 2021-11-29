@@ -136,3 +136,56 @@
 - Sid will start working on the Finish screen.
 - John will continue to make progress with the Boss level.
 - I will start on the implementation of player score and displaying it.
+
+---
+
+## 24 November 2021
+
+### What we did
+
+- John has made more progress on the boss level. A Mega UFO is on the screen.
+- I have implemented the player score and display.
+- Sid has made progress on the finish screen, but it introduces new bugs.
+
+### What we are doing / what is stuck
+
+- John is finishing up the boss level. We are thinking about what pattern he could implement.
+- Sid is fixing the bugs with the finish screen.
+- Faiz is implementing basic leaderboard components.
+- No communication from Hashmitha.
+
+### What we will need to do
+
+- Sid and Faiz will need to integrate their parts together.
+- I need to work on the wireframes as well as fix any minor bugs.
+- John will implement a pattern into the boss level.
+
+---
+
+## 26 November 2021
+
+### What we did
+
+- John has made further progress with the boss level.
+- John also took over Hashmitha's assignment in updating the main screen.
+- I made simple sketches of the wireframes.
+- Faiz has put together an iterator for the leaderboard component.
+
+### What we are doing / what is stuck
+
+- Faiz and Sid are still working together.
+- John and I are looking for any new bugs to squash.
+
+### What we will need to do
+
+- We need to put together the README components.
+- We need to consolidate the source code to be working.
+- We need to record the 1-min pitch video.
+
+---
+
+## \\ November 2021
+
+### What we did
+### What we are doing / what is stuck
+### What we will need to do
