@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=AttackPattern1
+comment1.params=theWorld\ counter
+comment1.target=void\ attack(GameWorld,\ int)
+comment2.params=theWorld
+comment2.target=void\ spawnRandomAttacks(GameWorld)
+numComments=3
