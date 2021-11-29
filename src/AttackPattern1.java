@@ -16,7 +16,7 @@ public class AttackPattern1 implements AttackStrategy {
         // This causes UFOs to be spawned, as suggested, on a separate thread.
         // Therefore, it seems that when the level is reset, this method is still running.
         // This causes random UFOs to continue spawning in during the "Now Entering" phase.
-        new Thread(() -> {
+        //new Thread(() -> {
             for (int i=0; i<20; i++) {
                 random = new Random();
                 int y = random.nextInt(300);
@@ -28,6 +28,6 @@ public class AttackPattern1 implements AttackStrategy {
                     Thread.sleep(y);
                 } catch (InterruptedException e) {}
             }
-        }).start();
+        //}).start();
     }
 }
