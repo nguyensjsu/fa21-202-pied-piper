@@ -57,7 +57,7 @@ implementations.
 
 ## High-Level Architecture Diagram
 
-![P-Type Class Diagram](./images/cmpe202-piedpiper-qtype-arch-diagram.png)
+![P-Type Class Diagram](./images/arch-diagram.png)
 
 The game consists of several java source files, and is sometimes collected into a gfar file, similar
 to a tarball or zip file, but proprietary to the Greenfoot. The Greenfoot environment essentially
