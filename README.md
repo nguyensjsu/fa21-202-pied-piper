@@ -57,7 +57,7 @@ implementations.
 
 ## High-Level Architecture Diagram
 
-![P-Type Class Diagram](./images/arch-diagram.png)
+![P-Type Architecture High-Level](./images/arch-diagram.png)
 
 The game consists of several java source files, and is sometimes collected into a gfar file, similar
 to a tarball or zip file, but proprietary to the Greenfoot. The Greenfoot environment essentially
@@ -68,6 +68,11 @@ its core `greenfoot.jar` library components that provide a baseline for the scen
 In our case, the Q-TYPE game runs a scenario that builds on top of the `World` and `Actor` core
 components, to create the game mechanics.
 
+A closer look at the underlying components within the Greenfoot environment is depicted as follows:
+
+![P-Type Architecture Components](./images/arch-diagram-components.png)
+
+
 ## Individual Journals
 
 * [John Monsod](./individual/john/README.md)
@@ -75,6 +80,27 @@ components, to create the game mechanics.
 * [Siddhant Satish Parma](./individual/siddhant/README.md)
 * [Faizali Mulla](./individual/faizali/README.md)
 * [Hashmitha Katta](./individual/hashmitha/README.md)
+
+## Summary of Areas of Contribution
+
+* John Monsod
+  * Start Screen
+  * Boss Level (final game level)
+  * Debug observer
+  * Class diagrams (before & after)
+  * Architecture diagram
+  * Bug fixes
+  * Code reviews
+  * Sprint Task Tracker
+  * XP Core Value - Communication
+* Roger Kuo
+  * TODO - fill in
+* Siddhant Satish Parma
+  * TODO - fill in
+* Faizali Mulla
+  * TODO - fill in
+* Hashmitha Katta
+  * TODO - fill in
 
 ## Project Videos
 - Link to your team's project Videos
