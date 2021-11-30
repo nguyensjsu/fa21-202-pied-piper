@@ -35,21 +35,21 @@ public class GameWorld extends World implements ISubject, IObserver
     GreenfootSound gameMusic = new GreenfootSound("delta.mp3");
 
     // Roger - Added life observer
-    IObserver lifeObserver;
-    IObserver scoreObserver;
+    private IObserver lifeObserver;
+    private IObserver scoreObserver;
     private EnumMap<Observer, IObserver> obsMap = new EnumMap<>(Observer.class);
 
     // John - track debug data within a game level
-    IDebugObserver debugObserver;
+    private IDebugObserver debugObserver;
 
     // Sid - Initialized variables and instantiated objects for Settings Screen 
     int bgmusic;
     int soundeffects;
     private static final int SETTINGS_SCREEN = 5;
-    Button bgmusicplus; 
-    Button bgmusicminus;
-    Button soundeffectsplus;
-    Button soundeffectsminus;
+    private Button bgmusicplus;
+    private Button bgmusicminus;
+    private Button soundeffectsplus;
+    private Button soundeffectsminus;
     private final static int VOLUME_STEP = 5;
     // over - Sid
 
@@ -71,8 +71,8 @@ public class GameWorld extends World implements ISubject, IObserver
         this.addObject((Actor)new Space(), 0, 200);
         this.addObject((Actor)new Space(), 600, 200);
 
-        this.bgmusic = 0;       // Changed to start muted because it is annoying.
-        this.soundeffects = 0;  //
+        this.bgmusic = 20;       // Changed to start muted because it is annoying.
+        this.soundeffects = 20;  //
         (this.introMusic).setVolume(bgmusic);
         (this.gameMusic).setVolume(soundeffects);
 
@@ -189,8 +189,8 @@ public class GameWorld extends World implements ISubject, IObserver
             }
             this.runningLevel = 1;
             // debug: start with boss level to test it immediately from game start
-//            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
-            (this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
         }
     }
     
