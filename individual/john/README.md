@@ -10,13 +10,21 @@
   * I responded in a timely manner to others' work, and kept everyone up to date on my work.
   * I increased our meeting syncs as we approached our deadline.
 
-
 ## Timeline
 
 ### 11/29/2021
+
 #### What I did
+* I added a more detailed architecture diagram that shows the underlying components.
+* I added more information into different sections of our team README.
+* I worked with Roger on the demo script (via slides) on how we can present this Sat.
+* We had a team sync to discuss remaining code items - Settings Screen PR, and Finish Screen/Leaderboard integration.
+
 #### Blockers
+* None, but more sense of urgency to conclude all required materials for our project.
+
 #### What I will do next
+* Additional artifacts for our demo slides, specifically, class diagram for the patterns I implemented.
 
 ### 11/28/2021
 
