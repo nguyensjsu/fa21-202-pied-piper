@@ -89,5 +89,103 @@
 ## 17 November 2021
 
 ### What we did
+
+- John created the base for the boss level. 
+- Sid set up a base for the Settings page
+- I have created a display for player lives using the observer pattern.
+
+### What we are doing / what is stuck
+
+- Sid continues to work on the Settings page by incorporating the buttons for volume
+  - The game/intro volume are separate from the sound effects. 
+  - Having one being adjustable is a good start.
+  - We can leave sound effects as a separate, lower priority task.
+- John continues to work on the Boss level.
+  - I suggested that the boss level can just be a static level with just one boss enemy, just to simplify the task.
+  - The level design will be left to his discretion. 
+- Progress from Faizali is unknown at this point.
+- Hashmitha has no access to the repo.
+
+### What we will need to do
+
+- I will clean up anything from the Life display code
+- I need to start working on implementing player score and displaying it.
+
+---
+
+## 20 November 2021
+
+### What we did
+
+- John added a Debugger display on the screen
+- Sid has successfully implemented buttons for volume adjustment
+- I made code adjustments to the life display and fixed some bugs.
+
+### What we are doing / what is stuck
+
+- We are discussing what will need to be done next.
+- I asked John about specifics in implementing the score. He helped in reminding me to keep things simple. 
+- Faizali says he has something in the works for the Leaderboard.
+  - I briefly discussed with him again on possible pattern implementations for the leaderboard.
+  - It really depends on how Sid's finish screen will work and how it will cooperate with the leaderboard aspects.
+- Hashmitha has not started any work yet.
+  - Not sure if she has asked the professor about repo access.
+
+### What we will need to do
+
+- Sid will start working on the Finish screen.
+- John will continue to make progress with the Boss level.
+- I will start on the implementation of player score and displaying it.
+
+---
+
+## 24 November 2021
+
+### What we did
+
+- John has made more progress on the boss level. A Mega UFO is on the screen.
+- I have implemented the player score and display.
+- Sid has made progress on the finish screen, but it introduces new bugs.
+
+### What we are doing / what is stuck
+
+- John is finishing up the boss level. We are thinking about what pattern he could implement.
+- Sid is fixing the bugs with the finish screen.
+- Faiz is implementing basic leaderboard components.
+- No communication from Hashmitha.
+
+### What we will need to do
+
+- Sid and Faiz will need to integrate their parts together.
+- I need to work on the wireframes as well as fix any minor bugs.
+- John will implement a pattern into the boss level.
+
+---
+
+## 26 November 2021
+
+### What we did
+
+- John has made further progress with the boss level.
+- John also took over Hashmitha's assignment in updating the main screen.
+- I made simple sketches of the wireframes.
+- Faiz has put together an iterator for the leaderboard component.
+
+### What we are doing / what is stuck
+
+- Faiz and Sid are still working together.
+- John and I are looking for any new bugs to squash.
+
+### What we will need to do
+
+- We need to put together the README components.
+- We need to consolidate the source code to be working.
+- We need to record the 1-min pitch video.
+
+---
+
+## \\ November 2021
+
+### What we did
 ### What we are doing / what is stuck
 ### What we will need to do

@@ -4,4 +4,6 @@ comment1.params=t
 comment1.target=BossLevel_Task(GameWorld)
 comment2.params=
 comment2.target=void\ run()
-numComments=3
+comment3.params=attackStrategy
+comment3.target=void\ changeAttackStrategy(AttackStrategy)
+numComments=4

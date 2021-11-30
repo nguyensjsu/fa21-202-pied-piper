@@ -81,10 +81,10 @@ public class GameWorld extends World implements ISubject, IObserver
 
         // Roger - Create and attach life and score observers
         this.addObject((Actor)(this.lifeObserver =
-                new LifeObserver(this.playerLives)), 250, 50);
+                new LifeObserver(this.playerLives)), 175, 50);
         this.attach(Observer.LIFE, this.lifeObserver);
         this.addObject((Actor)(this.scoreObserver =
-                new ScoreObserver(this.playerScore)), 350, 50);
+                new ScoreObserver(this.playerScore)), 325, 50);
         this.attach(Observer.SCORE, this.scoreObserver);
         this.showPlayer(false);
 
@@ -188,8 +188,9 @@ public class GameWorld extends World implements ISubject, IObserver
                 this.gameMusic.playLoop();
             }
             this.runningLevel = 1;
-            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
-            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            // debug: start with boss level to test it immediately from game start
+//            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
+            (this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
         }
     }
     
