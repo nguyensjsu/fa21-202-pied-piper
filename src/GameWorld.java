@@ -35,8 +35,8 @@ public class GameWorld extends World implements ISubject, IObserver
     GreenfootSound gameMusic = new GreenfootSound("delta.mp3");
 
     // Roger - Added life observer
-    IObserver lifeObserver;
-    IObserver scoreObserver;
+    LifeObserver lifeObserver;
+    ScoreObserver scoreObserver;
     private EnumMap<Observer, IObserver> obsMap = new EnumMap<>(Observer.class);
 
     // John - track debug data within a game level
