@@ -136,3 +136,6 @@ A closer look at the underlying components within the Greenfoot environment is d
 ![Q-Type Class Diagram](./uml/qtype_class_diagram.png)
 
 
+### Boss Level Strategy Pattern Class Diagram
+
+![Boss Level Strategy Pattern Class Diagram](./uml/BossLevelStrategyClassDiagram.png)
