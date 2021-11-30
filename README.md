@@ -4,8 +4,8 @@
 
 | Name                  | XP Core Value |
 | :---                  | :---          |
-| Roger Kuo             | Communication |
-| John Monsod           | Simplicity    |
+| John Monsod           | Communication |
+| Roger Kuo             | Simplicity    |
 | Siddhant Satish Parma | Feedback      |
 | Faizali Mulla         | Courage       |
 | Hashmitha Katta       | Respect       |
