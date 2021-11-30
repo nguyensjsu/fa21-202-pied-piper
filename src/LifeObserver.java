@@ -8,18 +8,20 @@ import greenfoot.Color;
 public class LifeObserver extends Actor implements IObserver {
 
     protected int lives;
+    private GameWorld subject;
 
-    public LifeObserver(int lives ) {
+    public LifeObserver(GameWorld subject, int lives ) {
+        this.subject = subject;
         this.lives = lives;
     }
 
     public void update() {
-        // Empty
+        this.lives = this.subject.getLives();
+        this.showState(true);
     }
 
     public void update(int num) {
-        this.lives = num;
-        this.showState(true);
+        // empty
     }
 
     public void showState(final boolean b) {

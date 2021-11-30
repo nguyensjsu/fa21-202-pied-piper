@@ -7,11 +7,18 @@ import java.util.Map;
 
 public class DebugObserver extends Actor implements IDebugObserver {
 
-    Map<String,Object> debugData;
+    private Map<String,Object> debugData;
+    private boolean enableVisibility;
 
     public DebugObserver() {
-        debugData = new HashMap<>();
+        this.debugData = new HashMap<>();
+        this.enableVisibility = false;
         this.setImage("empty.png");
+    }
+
+    @Override
+    public void setEnableVisibility(boolean enableVisibility) {
+        this.enableVisibility = enableVisibility;
     }
 
     @Override
@@ -36,21 +43,25 @@ public class DebugObserver extends Actor implements IDebugObserver {
 
     @Override
     public void showData() {
-        StringBuffer sb = new StringBuffer("DEBUG DATA:\n");
-        if (!debugData.isEmpty()) {
-            debugData.forEach((key, val) -> {
-                sb.append(key);
-                sb.append(" : ");
-                sb.append(val);
-                sb.append("\n");
-            });
+        if (this.enableVisibility) {
+            StringBuffer sb = new StringBuffer("DEBUG DATA:\n");
+            if (!debugData.isEmpty()) {
+                debugData.forEach((key, val) -> {
+                    sb.append(key);
+                    sb.append(" : ");
+                    sb.append(val);
+                    sb.append("\n");
+                });
+            } else {
+                sb.append("-empty-");
+            }
+            this.setImage(
+                    new GreenfootImage(
+                            sb.toString(), 20,
+                            Color.ORANGE, null, Color.WHITE));
         } else {
-            sb.append("-empty-");
+            this.setImage("empty.png");
         }
-        this.setImage(
-                new GreenfootImage(
-                        sb.toString(), 20,
-                        Color.ORANGE, null, Color.WHITE));
     }
 
     @Override

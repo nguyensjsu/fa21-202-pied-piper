@@ -35,21 +35,21 @@ public class GameWorld extends World implements ISubject, IObserver
     GreenfootSound gameMusic = new GreenfootSound("delta.mp3");
 
     // Roger - Added life observer
-    LifeObserver lifeObserver;
-    ScoreObserver scoreObserver;
+    private LifeObserver lifeObserver;
+    private ScoreObserver scoreObserver;
     private EnumMap<Observer, IObserver> obsMap = new EnumMap<>(Observer.class);
 
     // John - track debug data within a game level
-    IDebugObserver debugObserver;
+    private IDebugObserver debugObserver;
 
     // Sid - Initialized variables and instantiated objects for Settings Screen 
     int bgmusic;
     int soundeffects;
     private static final int SETTINGS_SCREEN = 5;
-    Button bgmusicplus; 
-    Button bgmusicminus;
-    Button soundeffectsplus;
-    Button soundeffectsminus;
+    private Button bgmusicplus;
+    private Button bgmusicminus;
+    private Button soundeffectsplus;
+    private Button soundeffectsminus;
     private final static int VOLUME_STEP = 5;
     // over - Sid
 
@@ -71,8 +71,8 @@ public class GameWorld extends World implements ISubject, IObserver
         this.addObject((Actor)new Space(), 0, 200);
         this.addObject((Actor)new Space(), 600, 200);
 
-        this.bgmusic = 0;       // Changed to start muted because it is annoying.
-        this.soundeffects = 0;  //
+        this.bgmusic = 20;       // Changed to start muted because it is annoying.
+        this.soundeffects = 20;  //
         (this.introMusic).setVolume(bgmusic);
         (this.gameMusic).setVolume(soundeffects);
 
@@ -81,10 +81,10 @@ public class GameWorld extends World implements ISubject, IObserver
 
         // Roger - Create and attach life and score observers
         this.addObject((Actor)(this.lifeObserver =
-                new LifeObserver(this.playerLives)), 175, 50);
+                new LifeObserver(this, this.playerLives)), 175, 50);
         this.attach(Observer.LIFE, this.lifeObserver);
         this.addObject((Actor)(this.scoreObserver =
-                new ScoreObserver(this.playerScore)), 325, 50);
+                new ScoreObserver(this, this.playerScore)), 325, 50);
         this.attach(Observer.SCORE, this.scoreObserver);
         this.showPlayer(false);
 
@@ -189,15 +189,15 @@ public class GameWorld extends World implements ISubject, IObserver
             }
             this.runningLevel = 1;
             // debug: start with boss level to test it immediately from game start
-//            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
-            (this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
         }
     }
     
     public void takeLife() {
         // Deduct life point
         --this.playerLives;
-        this.notifyObservers(Observer.LIFE, this.playerLives);
+        this.notifyObservers(Observer.LIFE);
         if (this.playerLives == 0) {
             this.endGame();
         }
@@ -230,8 +230,8 @@ public class GameWorld extends World implements ISubject, IObserver
         this.playerScore = 0;
         this.debugObserver.clearData();
         // Update/reset life observer
-        this.notifyObservers(Observer.LIFE, this.playerLives);
-        this.notifyObservers(Observer.SCORE, this.playerScore);
+        this.notifyObservers(Observer.LIFE);
+        this.notifyObservers(Observer.SCORE);
         this.showPlayer(false);
     }
     
@@ -241,10 +241,19 @@ public class GameWorld extends World implements ISubject, IObserver
         this.scoreObserver.showState(b);
     }
 
-    // New method to update player score
+    // New method for player score and lives
+
+    public int getScore() {
+        return this.playerScore;
+    }
+
+    public int getLives() {
+        return this.playerLives;
+    }
+
     private void updateScore(int num) {
         this.playerScore += num;
-        this.notifyObservers(Observer.SCORE, this.playerScore);
+        this.notifyObservers(Observer.SCORE);
     }
 
     // Sid - added methods to support functioning of settings page
@@ -310,8 +319,8 @@ public class GameWorld extends World implements ISubject, IObserver
         // Empty
     }
 
-    public void notifyObservers(Enum o, int num) {
-        obsMap.get(o).update(num);
+    public void notifyObservers(Enum o) {
+        obsMap.get(o).update();
     }
 
     // As the Observer

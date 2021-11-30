@@ -106,10 +106,8 @@ public class BossLevel_Task extends BaseLevel {
                     final List l = this.theWorld.getObjects((Class)Ufo.class);
                     debugData.put("enemiesLeft", l.size());
                     updateDebugData();
-                    //final List l2 = this.theWorld.getObjects((Class)MegaUfo.class);
-                    if (l.isEmpty()) { // && l2.isEmpty()) {
-                        this.theWorld.endGame();
-                        //this.theWorld.endLevel();
+                    if (l.isEmpty()) {
+                        this.theWorld.endLevel();
                         this.onBreak = true;
                         break;
                     }

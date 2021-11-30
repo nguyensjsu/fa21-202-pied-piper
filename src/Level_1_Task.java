@@ -164,8 +164,6 @@ public class Level_1_Task extends BaseLevel
                     updateDebugData();
                     final List l = this.theWorld.getObjects((Class)Ufo.class);
                     if (l.isEmpty()) {
-                        // DEBUG: end game
-                        //this.theWorld.endGame();
                         this.theWorld.endLevel();
                         this.onBreak = true;
                         break;
