@@ -24,9 +24,9 @@ public class AttackPattern1 implements AttackStrategy {
                 int pattern = random.nextInt(4);
                 int type = random.nextInt(3) + 1;
                 theWorld.addObject((Actor) new Ufo(pattern, type, speed), 600, y);
-                try {
-                    Thread.sleep(y);
-                } catch (InterruptedException e) {}
+                // try {
+                //     Thread.sleep(y);
+                // } catch (InterruptedException e) {}
             }
         //}).start();
     }
