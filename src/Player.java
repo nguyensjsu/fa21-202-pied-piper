@@ -36,6 +36,7 @@ public class Player extends Actor
     }
 
     private IDebugObserver debugObserver;
+    private boolean debugVisibility;
     public void setDebugObserver(IDebugObserver debugObserver) {
         this.debugObserver = debugObserver;
     }
@@ -103,8 +104,13 @@ public class Player extends Actor
             this.getWorld().addObject((Actor)laser, this.getX() + 24, this.getY() + 4);
             this.laserShot.play();
         }
+        if (Greenfoot.isKeyDown("d")){
+            // toggle debug visibility
+            this.debugVisibility = !this.debugVisibility;
+            this.debugObserver.setEnableVisibility(debugVisibility);
+        }
     }
-    
+
     public void showPlayer(final boolean b) {
         if (b) {
             this.setImage(this.i1);

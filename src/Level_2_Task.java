@@ -157,7 +157,6 @@ public class Level_2_Task extends BaseLevel
                     ++this.counter;
                     final List l = this.theWorld.getObjects((Class)Ufo.class);
                     if (l.isEmpty()) {
-                        //this.theWorld.endGame();
                         this.theWorld.endLevel();
                         this.onBreak = true;
                         break;
