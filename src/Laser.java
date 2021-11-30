@@ -113,7 +113,7 @@ public class Laser extends Actor implements ISubject
         }
     }
 
-    public void notifyObservers(Enum o, int i) {
+    public void notifyObservers(Enum o) {
         // Empty
     }
     // END - ROGER - Observer Pattern
