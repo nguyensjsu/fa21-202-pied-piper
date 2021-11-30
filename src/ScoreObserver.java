@@ -8,18 +8,20 @@ import greenfoot.Color;
 public class ScoreObserver extends Actor implements IObserver {
 
     protected int score;
+    private GameWorld subject;
 
-    public ScoreObserver(int score) {
+    public ScoreObserver(GameWorld subject, int score) {
+        this.subject = subject;
         this.score = score;
     }
 
     public void update() {
-        // Empty
+        this.score = this.subject.getScore();
+        this.showState(true);
     }
 
     public void update(int num) {
-        this.score = num;
-        this.showState(true);
+        // empty
     }
 
     public void showState(final boolean b) {
