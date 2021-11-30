@@ -3,7 +3,7 @@
 ## Team Members
 
 | Name                  | XP Core Value |
-| --------------------- | ------------- |
+| :---                  | :---          |
 | Roger Kuo             | Communication |
 | John Monsod           | Simplicity    |
 | Siddhant Satish Parma | Feedback      |
@@ -106,6 +106,16 @@ A closer look at the underlying components within the Greenfoot environment is d
   * TODO - fill in
 * Hashmitha Katta
   * TODO - fill in
+
+### Sprint Details
+
+#### Sprint Task Sheet
+
+![Sprint Task Sheet](./images/sprint-task-sheet.png)
+
+#### Sprint Burndown Chart
+
+![Sprint Burndown](./images/sprint-burndown.png)
 
 ## Project Videos
 - Link to your team's project Videos
