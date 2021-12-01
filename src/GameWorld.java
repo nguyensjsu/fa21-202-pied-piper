@@ -9,6 +9,9 @@ import greenfoot.GreenfootSound;
 import greenfoot.World;
 import greenfoot.GreenfootImage;
 import greenfoot.Color;
+import java.lang.String;
+import java.util.*;
+import javax.swing.*;
 
 
 // 
@@ -51,6 +54,23 @@ public class GameWorld extends World implements ISubject, IObserver
     Button soundeffectsplus;
     Button soundeffectsminus;
     private final static int VOLUME_STEP = 5;
+    
+    // Sid - Declared variables and instantiated objects for Finish Screen
+    private static final int FINISH_SCREEN = 6;
+    private static final int TRANSITION_SCREEN = 7;
+    private static final int LEADERBOARD_SCREEN = 8;
+    
+    // Sid - 
+    String playerAlias;
+    JFrame f;
+    
+    // Sid - 
+    LinkedHashMap<Integer, String> leaderBoard;
+    LinkedHashMap<String, String> sortedleaderBoard;
+    ArrayList<Integer> sortedKeys;
+    LeaderBoardIterator iter;
+    int lastpositionScore;
+    
     // over - Sid
 
     private enum Observer {
@@ -61,7 +81,7 @@ public class GameWorld extends World implements ISubject, IObserver
         super(600, 400, 1, false);
         this.runningLevel = -1;
         this.d = 0.0;
-        this.playerLives = 3;
+        this.playerLives = 1;
         this.playerScore = 0;
         this.gameState = 3;
         this.prepare();
@@ -96,25 +116,40 @@ public class GameWorld extends World implements ISubject, IObserver
         this.bgmusicminus = new Button("minus.png", this, "bgmusic", -VOLUME_STEP);
         this.soundeffectsplus = new Button("plus.png", this, "soundeffects", VOLUME_STEP);
         this.soundeffectsminus = new Button("minus.png", this, "soundeffects", -VOLUME_STEP);
+        
+        //Sid-
+        this.leaderBoard = new LinkedHashMap();
+        this.sortedleaderBoard = new LinkedHashMap();
+        this.lastpositionScore = 0;
         // over - Sid
         
-        final Class[] x = { Button.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class};
+        final Class[] x = {LeaderboardScreen.class, Button.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, Moon.class};
         this.setPaintOrder(x);
     }
     
     public void act() {
         switch (this.gameState) {
             case 2: {
+                // GameOver Screen
+                
                 final List l = this.getObjects((Class)GameOverScreen.class);
                 if (l.isEmpty()) {
-                    this.timer.cancel();
-                    this.resetGame();
-                    this.gameState = 3;
-                    break;
+                    //this.timer.cancel();
+                    //this.resetGame();
+                    if(playerScore > this.lastpositionScore){
+                        this.gameState = 7;
+                        break;
+                    }
+                    else{
+                        this.gameState = 8;
+                        break;
+                    }
                 }
                 break;
             }
             case 3: {
+                // Start Screen
+                
                 if (!this.introMusic.isPlaying()) {
                     this.introMusic.play();
                 }
@@ -134,15 +169,71 @@ public class GameWorld extends World implements ISubject, IObserver
                 break;
             }
             case 4: {
+                // Between Levels
+                
                 this.startNewLevel();
                 this.gameState = 1;
                 break;
             }
             case 5: {
+                // Settings Screen
+                
                 this.displaysettings();
                 this.addButtons();
                 if (Greenfoot.isKeyDown("escape")){
                     this.backtoStart();
+                    break;
+                }
+                break;
+            }
+            case 6:{
+                // Finish Screen (The Screen that is displayed when you pass all the levels)
+                
+                final List l = this.getObjects((Class)FinishScreen.class);
+                if (l.isEmpty()) {
+                    if(playerScore > this.lastpositionScore){
+                        this.gameState = 7;
+                        break;
+                    }
+                    else{
+                        this.gameState = 8;
+                        break;
+                    }
+                }
+                break;
+            }
+            case 7:{
+                // Transition Screen
+                
+                this.playerAlias = JOptionPane.showInputDialog(f,"Enter your Name"); 
+                this.playerAlias = this.playerAlias.substring(0,3).toUpperCase();
+                this.gameState = 8;
+                this.addObject((Actor)new TransitionScreen(playerAlias, playerScore), 300, 200);
+
+                break;
+            }
+            case 8:{
+                // Leaderboard Screen
+                
+                this.leaderBoard.put(playerScore, playerAlias);
+                this.sortedKeys = new ArrayList<Integer>(leaderBoard.keySet());
+                Collections.sort(sortedKeys, Collections.reverseOrder());
+                this.lastpositionScore = sortedKeys.get(sortedKeys.size()-1);
+                for (int x : sortedKeys){
+                    this.sortedleaderBoard.put(String.valueOf(x), leaderBoard.get(x));
+                }
+                this.iter = new LeaderBoardIterator(this.sortedleaderBoard);
+                final List l = this.getObjects((Class)Ufo.class);
+                if (!l.isEmpty()) {
+                    this.removeObjects((Collection)l);
+                }
+                this.showPlayer(false);
+                this.addObject((Actor)new LeaderboardScreen(iter), 300, 200);
+                this.sortedleaderBoard.clear();
+                if(Greenfoot.isKeyDown("escape")){
+                    this.timer.cancel();
+                    this.resetGame();
+                    this.gameState = 3;
                     break;
                 }
                 break;
@@ -153,8 +244,14 @@ public class GameWorld extends World implements ISubject, IObserver
     public void endGame() {
         this.showPlayer(false);
         this.debugObserver.clearData();
-        this.addObject((Actor)new GameOverScreen(), 300, 200);
-        this.gameState = 2;
+        if(playerLives == 0){
+            this.addObject((Actor)new GameOverScreen(), 300, 200);
+            this.gameState = 2;
+        }
+        else{
+            this.addObject((Actor)new FinishScreen(), 300, 200);
+            this.gameState = 6;
+        }
         if (this.gameMusic.isPlaying()) {
             this.gameMusic.stop();
         }
@@ -218,7 +315,7 @@ public class GameWorld extends World implements ISubject, IObserver
     }
     
     public void resetGame() {
-        final List l = this.getObjects((Class)Ufo.class);
+        final List l = this.getObjects((Class)LeaderboardScreen.class);
         if (!l.isEmpty()) {
             this.removeObjects((Collection)l);
         }
