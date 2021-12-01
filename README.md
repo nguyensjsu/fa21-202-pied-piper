@@ -17,21 +17,19 @@
 
 Our project involved taking an existing Greenfoot game called P-TYPE and customizing it with several
 enhancements. Our team coordinated on a regular basis to tackle a set of User Stories that we converted
-into tangible tasks, and designated each of us to work on concurrently.
+into tangible tasks that each of us worked on concurrently.
 
 This work required us to take the original source code as a starting point, identify several areas where changes
-needed to be made, and applied code changes as appropriate. We followed a branch+merge strategy, where each of
-us worked on our respective branch of changes, and submitted for a Pull Request whenever each of us achieved
-a tangible milestone as identified in our respective assigned tasks. We generally required at least 1-2 peers
-to review the code before merging changes back to the main branch. We created new tickets whenever we identified
-any bugs from subsequent testing, and assigned them to the most appropriate individual to resolve.
+needed to be made, and apply code changes as appropriate. We followed a branch+merge strategy, where each of
+us worked on our respective branch of changes and submitted Pull Requests whenever a tangible milestone as identified in our respective assigned tasks had been achieved. 
+We generally required at least 1-2 peers to review the code before merging changes back to the main branch. 
+We created new tickets whenever we identified any bugs from subsequent testing and assigned them to the most appropriate individual to resolve.
 
 The original game we started with was a simple 2-level game with a main (splash) screen. A few keyboard presses
-were in place to be able to start the game, fire at UFOs, and for the player's ship movement in 4 directions
-(up/down/left/right). We enhanced the game so that it was customized with our new name, Q-TYPE, along with the
-ability to adjust some settings (e.g. volume), a new game level, tracking of number of lives and scores, as
-well as a leaderboard. Along with these enhancements, we incorporated a few design patterns as part of the
-implementations.
+were in place to be able to start the game, fire at UFOs, and move the player's ship in 4 directions
+(up/down/left/right). We enhanced the game so that it was customized with our new name "Q-TYPE" along with the
+ability to adjust some settings (e.g. volume), a new game level, the tracking of number of lives and scores, and a leaderboard. 
+Along with these enhancements, we incorporated a few design patterns as part of the implementations.
 
 ## Summary of Key Features
 - Customized Main Screen
@@ -99,6 +97,7 @@ A closer look at the underlying components within the Greenfoot environment is d
   * Player Life count display - Observer Pattern
   * Player Score and display - Observer Patterns
   * Wireframes
+  * 1-min pitch video
   * Bug fixes and code reviews
 * Siddhant Satish Parma
   * TODO - fill in
@@ -122,6 +121,7 @@ A closer look at the underlying components within the Greenfoot environment is d
   - Pitch User Story
     - Develop a 1-minute "User Story Video" to sell your game / project.
     - "User Story Video" to be played in class on "User Story Day"
+    - ![pitch](./videos/qtype.mp4)
   - Project Demo
     - Give a demo of your teams working prototype on "Demo Day"
 
@@ -135,7 +135,14 @@ A closer look at the underlying components within the Greenfoot environment is d
 
 ![Q-Type Class Diagram](./uml/qtype_class_diagram.png)
 
-
 ### Boss Level Strategy Pattern Class Diagram
 
 ![Boss Level Strategy Pattern Class Diagram](./uml/BossLevelStrategyClassDiagram.png)
+
+### Life Display Observer Class Diagram
+
+![LifeObserver](./uml/LifeObserver.png)
+
+### Score Implementation and Display Observer Class Diagram
+
+![ScoreObserver](./uml/ScoreObserver.png)
