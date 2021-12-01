@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=LeaderBoardIterator
+comment1.params=inLb
+comment1.target=LeaderBoardIterator(java.util.LinkedHashMap)
+comment2.params=
+comment2.target=boolean\ hasMore()
+comment3.params=
+comment3.target=java.lang.String\ nextItem()
+numComments=4

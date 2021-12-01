@@ -2,6 +2,8 @@
 comment0.target=IObserver
 comment1.params=
 comment1.target=void\ update()
-comment2.params=b
-comment2.target=void\ showState(boolean)
-numComments=3
+comment2.params=i
+comment2.target=void\ update(int)
+comment3.params=b
+comment3.target=void\ showState(boolean)
+numComments=4

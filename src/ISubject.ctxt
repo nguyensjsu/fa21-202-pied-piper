@@ -6,4 +6,6 @@ comment2.params=obj
 comment2.target=void\ detach(IObserver)
 comment3.params=
 comment3.target=void\ notifyObservers()
-numComments=4
+comment4.params=o
+comment4.target=void\ notifyObservers(java.lang.Enum)
+numComments=5

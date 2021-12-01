@@ -2,13 +2,12 @@ import greenfoot.Greenfoot;
 import greenfoot.GreenfootSound;
 import greenfoot.GreenfootImage;
 import greenfoot.Actor;
-import java.util.ArrayList;
 
 // 
 // Decompiled by Procyon v0.5.36
 // 
 
-public class Player extends Actor implements ISubject
+public class Player extends Actor
 {
     int counter;
     int speedV;
@@ -22,8 +21,6 @@ public class Player extends Actor implements ISubject
     GreenfootSound laserShot;
     public static final int WEAPON_LASER = 1;
     public static final int WEAPON_BULLET = 2;
-
-    private ArrayList<IObserver> observers = new ArrayList<>() ;
     
     public Player() {
         this.counter = 0;
@@ -37,7 +34,13 @@ public class Player extends Actor implements ISubject
         this.i3 = new GreenfootImage("player3.png");
         this.i4 = new GreenfootImage("player2.png");
     }
-    
+
+    private IDebugObserver debugObserver;
+    private boolean debugVisibility;
+    public void setDebugObserver(IDebugObserver debugObserver) {
+        this.debugObserver = debugObserver;
+    }
+
     public void act() {
         if (this.enableKeys) {
             this.checkKeys();
@@ -69,12 +72,12 @@ public class Player extends Actor implements ISubject
                 this.getWorld().addObject((Actor)new Explosion(), this.getX(), this.getY());
                 this.showPlayer(false);
                 // Deduct Life Point
-                this.notifyObservers();
                 ((GameWorld)this.getWorld()).takeLife();
             }
         }
     }
-    
+
+
     public void checkKeys() {
         if (Greenfoot.isKeyDown("up")) {
             if (this.getY() > 15) {
@@ -95,11 +98,19 @@ public class Player extends Actor implements ISubject
         ++this.counter;
         if (Greenfoot.isKeyDown("space") && this.counter > 14) {
             this.counter = 0;
-            this.getWorld().addObject((Actor)new Laser(2), this.getX() + 24, this.getY() + 4);
+            Laser laser = new Laser(2, debugObserver);
+            // Add gameworld as observer for scoring
+            laser.attach((GameWorld)this.getWorld());
+            this.getWorld().addObject((Actor)laser, this.getX() + 24, this.getY() + 4);
             this.laserShot.play();
         }
+        if (Greenfoot.isKeyDown("d")){
+            // toggle debug visibility
+            this.debugVisibility = !this.debugVisibility;
+            this.debugObserver.setEnableVisibility(debugVisibility);
+        }
     }
-    
+
     public void showPlayer(final boolean b) {
         if (b) {
             this.setImage(this.i1);
@@ -118,22 +129,6 @@ public class Player extends Actor implements ISubject
     
     public void resetLocation() {
         this.setLocation(83, 215);
-    }
-
-    // ROGER - Observer Pattern
-
-    public void attach(IObserver obj) {
-        observers.add(obj) ;
-    }
-
-    public void detach(IObserver obj) {
-        observers.remove(obj) ;
-    }
-
-    public void notifyObservers() {
-        for (IObserver obj : observers) {
-            obj.update();
-        }
     }
 
 }

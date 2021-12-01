@@ -1,26 +1,11 @@
-import greenfoot.Actor;
+import java.util.*;
 
-import java.util.List;
-import java.util.TimerTask;
+public class BossLevel_Task extends BaseLevel {
 
-public class BossLevel_Task extends TimerTask {
-
-    GameWorld theWorld;
-    private int MAXPHASE;
-    int counter;
-    int phase;
-    int breakCounter;
-    boolean onBreak;
-    Actor entering;
+    private AttackStrategy attackStrategy;
 
     public BossLevel_Task(final GameWorld t) {
-        this.MAXPHASE = 7;
-        this.counter = 0;
-        this.phase = 0;
-        this.breakCounter = 0;
-        this.onBreak = false;
-        this.entering = new NowEntering();
-        this.theWorld = t;
+        super(t);
     }
 
     @Override
@@ -33,15 +18,31 @@ public class BossLevel_Task extends TimerTask {
                 this.counter = 0;
                 this.breakCounter = 0;
             }
+            updateDebugData();
         }
         else {
             switch (this.phase) {
                 case 0: {
+                    updateDebugData();
                     ++this.counter;
                     if (this.counter == 1) {
                         this.theWorld.showPlayer(false);
                         this.entering.setImage("boss_level.png");
                         this.theWorld.addObject(this.entering, 300, 200);
+                        // Removes existing UFOs and objects upon reset
+                        // However, it is still spawning the next wave.
+                        List l = this.theWorld.getObjects((Class)RedSun.class);
+                        if (l != null) {
+                            this.theWorld.removeObjects((Collection)l);
+                        }
+                        l = this.theWorld.getObjects((Class)Ufo.class);
+                        if (l != null) {
+                            this.theWorld.removeObjects((Collection)l);
+                        }
+                        l = this.theWorld.getObjects((Class)MegaUfo.class);
+                        if (l != null) {
+                            this.theWorld.removeObjects((Collection)l);
+                        }
                         break;
                     }
                     if (this.counter == 6) {
@@ -53,114 +54,60 @@ public class BossLevel_Task extends TimerTask {
                     break;
                 }
                 case 1: {
+                    updateDebugData();
                     ++this.counter;
-                    if (this.counter < 6) {
-                        this.theWorld.addObject((Actor)new Ufo(1, 3), 600, 250);
-                        break;
-                    }
-                    if (this.counter == 6) {
-                        this.theWorld.addObject((Actor)new Sun(), 800, 360);
-                        break;
-                    }
+                    changeAttackStrategy(new AttackPattern1());
+                    attackStrategy.attack(this.theWorld, this.counter);
                     this.onBreak = true;
                     break;
                 }
                 case 2: {
+                    updateDebugData();
                     ++this.counter;
-                    if (this.counter < 6) {
-                        this.theWorld.addObject((Actor)new Ufo(2, 3), 600, 380);
-                        break;
-                    }
+                    changeAttackStrategy(new AttackPattern2());
+                    attackStrategy.attack(this.theWorld, this.counter);
                     this.onBreak = true;
                     break;
                 }
                 case 3: {
+                    updateDebugData();
                     ++this.counter;
-                    if (this.counter < 6) {
-                        this.theWorld.addObject((Actor)new Ufo(3, 3), 600, 20);
-                        break;
-                    }
+                    changeAttackStrategy(new AttackPattern3());
+                    attackStrategy.attack(this.theWorld, this.counter);
                     this.onBreak = true;
                     break;
                 }
                 case 4: {
+                    updateDebugData();
                     ++this.counter;
-                    if (this.counter == 1) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 100);
-                        break;
-                    }
-                    if (this.counter == 2) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 300);
-                        break;
-                    }
-                    if (this.counter == 3) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 150);
-                        break;
-                    }
-                    if (this.counter == 4) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 250);
-                        break;
-                    }
-                    if (this.counter == 5) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 200);
-                        break;
-                    }
+                    changeAttackStrategy(new AttackPattern4());
+                    attackStrategy.attack(this.theWorld, this.counter);
                     this.onBreak = true;
                     break;
                 }
                 case 5: {
+                    updateDebugData();
                     ++this.counter;
-                    if (this.counter == 1) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 100);
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 300);
-                        break;
-                    }
-                    if (this.counter == 2) {
-                        this.theWorld.addObject((Actor)new Sun(), 800, 360);
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 150);
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 250);
-                        break;
-                    }
-                    if (this.counter == 3) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 200);
-                        break;
-                    }
+                    changeAttackStrategy(new AttackPattern5());
+                    attackStrategy.attack(this.theWorld, this.counter);
                     this.onBreak = true;
                     break;
                 }
                 case 6: {
+                    updateDebugData();
                     ++this.counter;
-                    if (this.counter == 1) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 200);
-                        break;
-                    }
-                    if (this.counter == 2) {
-                        this.theWorld.addObject((Actor)new Ufo(2), 600, 380);
-                        this.theWorld.addObject((Actor)new Ufo(3), 600, 20);
-                        break;
-                    }
-                    if (this.counter == 3) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 200);
-                        break;
-                    }
-                    if (this.counter == 4) {
-                        this.theWorld.addObject((Actor)new Ufo(2), 600, 380);
-                        this.theWorld.addObject((Actor)new Ufo(3), 600, 20);
-                        break;
-                    }
-                    if (this.counter == 5) {
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 140);
-                        this.theWorld.addObject((Actor)new Ufo(0), 600, 260);
-                        break;
-                    }
+                    changeAttackStrategy(new AttackPattern6());
+                    attackStrategy.attack(this.theWorld, this.counter);
                     this.onBreak = true;
                     break;
                 }
                 case 7: {
                     ++this.counter;
                     final List l = this.theWorld.getObjects((Class)Ufo.class);
+                    debugData.put("enemiesLeft", l.size());
+                    updateDebugData();
                     if (l.isEmpty()) {
-                        this.theWorld.endGame();
+                        this.theWorld.endLevel();
                         this.onBreak = true;
                         break;
                     }
@@ -168,5 +115,9 @@ public class BossLevel_Task extends TimerTask {
                 }
             }
         }
+    }
+
+    private void changeAttackStrategy(AttackStrategy attackStrategy) {
+        this.attackStrategy = attackStrategy;
     }
 }
