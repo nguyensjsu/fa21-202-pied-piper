@@ -12,6 +12,40 @@
 
 ## Timeline
 
+### 12/01/2021
+
+#### What I did
+* TBD
+
+#### Blockers
+* TBD
+
+#### What I will do next
+* TBD
+
+
+### 12/01/2021
+
+#### What I did
+* Went over Sid's work, discussed pending final code merges, and the gaps in our demo slide deck.
+
+#### Blockers
+* None, but getting close to the deadline, so we will need to get the demo recording finished soon.
+
+#### What I will do next
+* We will record the demo video as a team and add it as a link for our final submission.
+
+### 11/30/2021
+
+#### What I did
+* Added more content into the demo slides.
+
+#### Blockers
+* Full demo is dependent on the final code completion so we can run it and record our discussion as part of it.
+
+#### What I will do next
+* Close the loop with the team  on code completion.
+
 ### 11/29/2021
 
 #### What I did
