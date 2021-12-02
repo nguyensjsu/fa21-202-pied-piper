@@ -44,3 +44,63 @@
 ### Was there any block?
 
 ---
+
+## 11/13/2021
+
+### What was done?
+
+### What is planned for next meet?
+
+### Was there any block?
+
+---
+
+## 11/17/2021
+
+### What was done?
+
+### What is planned for next meet?
+
+### Was there any block?
+
+---
+
+## 11/20/2021
+
+### What was done?
+
+### What is planned for next meet?
+
+### Was there any block?
+
+---
+
+## 11/24/2021
+
+### What was done?
+
+### What is planned for next meet?
+
+### Was there any block?
+
+---
+
+## 11/29/2021
+
+### What was done?
+
+### What is planned for next meet?
+
+### Was there any block?
+
+---
+
+## 12/01/2021
+
+### What was done?
+
+### What is planned for next meet?
+
+### Was there any block?
+
+---
