@@ -280,10 +280,11 @@ public class GameWorld extends World implements ISubject, IObserver
             if (!this.gameMusic.isPlaying()) {
                 this.gameMusic.playLoop();
             }
-            this.runningLevel = 1;
             // debug: start with boss level to test it immediately from game start
-            (this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
-            //(this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
+            //this.runningLevel = 3;
+            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            this.runningLevel = 1;
+            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
         }
     }
     
