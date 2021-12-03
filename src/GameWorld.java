@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.*;
 
 
-//
 // Decompiled by Procyon v0.5.36
 // 
 
@@ -116,7 +115,7 @@ public class GameWorld extends World implements ISubject, IObserver
         this.bgmusicminus = new Button("minus.png", this, "bgmusic", -VOLUME_STEP);
         this.soundeffectsplus = new Button("plus.png", this, "soundeffects", VOLUME_STEP);
         this.soundeffectsminus = new Button("minus.png", this, "soundeffects", -VOLUME_STEP);
-        
+
         //Sid-
         this.leaderBoard = new LinkedHashMap();
         this.sortedleaderBoard = new LinkedHashMap();
@@ -282,8 +281,8 @@ public class GameWorld extends World implements ISubject, IObserver
             }
             this.runningLevel = 1;
             // debug: start with boss level to test it immediately from game start
-            (this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
-            //(this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
+            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
         }
     }
     

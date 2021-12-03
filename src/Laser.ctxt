@@ -6,8 +6,13 @@ comment10.params=obj
 comment10.target=void\ detach(IObserver)
 comment11.params=
 comment11.target=void\ notifyObservers()
+<<<<<<< HEAD
 comment12.params=o
 comment12.target=void\ notifyObservers(java.lang.Enum)
+=======
+comment12.params=o\ i
+comment12.target=void\ notifyObservers(java.lang.Enum,\ int)
+>>>>>>> main
 comment2.params=t\ debugObserver
 comment2.target=Laser(int,\ IDebugObserver)
 comment3.params=t
