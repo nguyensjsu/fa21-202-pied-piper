@@ -184,8 +184,94 @@
 
 ---
 
-## \\ November 2021
+## 29 November 2021
 
 ### What we did
+
+- I updated parts of the burndown chart.
+- John is continuously updating our Readme.
+  - He put together several diagrams. 
+
 ### What we are doing / what is stuck
+
+- We are putting together a draft of our presentation.
+- We are working on and discussing what to include in the Readme.
+
 ### What we will need to do
+
+- We need to continue with putting the presentation together.
+- We need to see what Sid has put together.
+
+---
+
+## 30 November 2021
+
+### What we did
+
+- John was able to add a toggle to the Debug display.
+- I updated the observer patterns to be more correct.
+
+### What we are doing / what is stuck
+
+- I am working on the pitch video.
+- Sid is fixing bugs on the finish and leaderboard screens.
+  - I think it is best, at this point, to focus on major bugs and not worry about the minor ones.
+
+### What we will need to do
+
+- Sid will continue to complete his parts.
+- I will continue to work on the video.
+
+---
+
+## 1 December 2021
+
+### What we did
+
+- Sid has pushed his code up. 
+- I have completed the pitch video.
+
+### What we are doing / what is stuck
+
+- We are going over Sid's work.
+ - It is almost ready to go. We need to resolve some conflicts in the code.
+- We are still figuring out what to do with the presentation.
+
+### What we will need to do
+
+- We need to prepare the video. 
+
+---
+
+## 2 December 2021
+
+### What we did
+
+- Sid is finished with his coding tasks.
+
+### What we are doing / what is stuck
+
+- We are resolving code conflicts together.
+ - The source code should be ready at this point.
+ - We can do a whole end-to-end run that presents all the features.
+- We are still discussing what to do for our video.
+
+### What we will need to do
+
+- We have decided to record individual parts for our slides, and we will put them together in one video.
+
+---
+
+## 3 December 2021
+
+### What we did
+
+- 
+
+### What we are doing / what is stuck
+
+- 
+
+### What we will need to do
+
+- 
