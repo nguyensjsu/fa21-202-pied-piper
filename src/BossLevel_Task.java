@@ -107,7 +107,7 @@ public class BossLevel_Task extends BaseLevel {
                     debugData.put("enemiesLeft", l.size());
                     updateDebugData();
                     if (l.isEmpty()) {
-                        this.theWorld.endLevel();
+                        this.theWorld.endGame();
                         this.onBreak = true;
                         break;
                     }

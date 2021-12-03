@@ -201,7 +201,7 @@ public class GameWorld extends World implements ISubject, IObserver
             case 7:{
                 // Transition Screen
                 
-                this.playerAlias = JOptionPane.showInputDialog(f,"Enter your Name"); 
+                this.playerAlias = JOptionPane.showInputDialog(f,"Enter your Name for the Leaderboard!"); 
                 this.playerAlias = this.playerAlias.substring(0,3).toUpperCase();
                 this.gameState = 8;
                 this.addObject((Actor)new TransitionScreen(playerAlias, playerScore), 300, 200);
@@ -282,8 +282,8 @@ public class GameWorld extends World implements ISubject, IObserver
             }
             this.runningLevel = 1;
             // debug: start with boss level to test it immediately from game start
-            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
-            (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
+            (this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
+            //(this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
         }
     }
     
