@@ -119,9 +119,7 @@ A closer look at the underlying components within the Greenfoot environment is d
 ## Project Videos
 - Link to your team's project Videos
   - Pitch User Story
-    - Develop a 1-minute "User Story Video" to sell your game / project.
-    - "User Story Video" to be played in class on "User Story Day"
-    - ![pitch](./videos/qtype.mp4)
+    - ![pitch](https://youtu.be/26ExLeiI-hE)
   - Project Demo
     - Give a demo of your teams working prototype on "Demo Day"
 
