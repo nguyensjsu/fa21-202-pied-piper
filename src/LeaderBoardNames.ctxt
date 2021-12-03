@@ -3,5 +3,5 @@ comment0.target=LeaderBoardNames
 comment1.params=
 comment1.target=boolean\ hasMore()
 comment2.params=
-comment2.target=java.util.LinkedHashMap\ nextItem()
+comment2.target=java.lang.String\ nextItem()
 numComments=3

@@ -21,9 +21,9 @@ class LeaderBoardIterator implements LeaderBoardNames{
         }
     }
 
-    public LinkedHashMap<String, String> nextItem(){
-        LinkedHashMap<String, String> item = new LinkedHashMap();
-        item.put(lb.get(counter), rawLb.get(lb.get(counter)));
+    public String nextItem(){
+        String item = "";
+        item = ". Score: " + lb.get(counter) + "\t\tAlias: " + rawLb.get(lb.get(counter));
         counter++;
         return item;
     }
