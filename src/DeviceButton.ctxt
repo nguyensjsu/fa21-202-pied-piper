@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=DeviceButton
+comment1.params=newCommand
+comment1.target=DeviceButton(Command)
+comment2.params=
+comment2.target=void\ press()
+comment3.params=
+comment3.target=void\ undo()
+numComments=4

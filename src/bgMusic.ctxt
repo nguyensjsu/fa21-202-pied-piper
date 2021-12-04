@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=bgMusic
+comment1.params=
+comment1.target=bgMusic()
+comment2.params=gw
+comment2.target=bgMusic(GameWorld)
+comment3.params=
+comment3.target=void\ volumeUp()
+comment4.params=
+comment4.target=void\ volumeDown()
+numComments=5

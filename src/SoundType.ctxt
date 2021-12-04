@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=SoundType
+comment1.params=type\ gw
+comment1.target=Sound\ getSoundType(java.lang.String,\ GameWorld)
+numComments=2

@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ChangeVolBG
+comment1.params=newDevice
+comment1.target=ChangeVolBG(Sound)
+comment2.params=
+comment2.target=void\ execute()
+comment3.params=
+comment3.target=void\ undo()
+numComments=4

@@ -46,25 +46,29 @@ public class GameWorld extends World implements ISubject, IObserver
     private IDebugObserver debugObserver;
 
     // Sid - Initialized variables and instantiated objects for Settings Screen 
-    int bgmusic;
-    int soundeffects;
+    public int bgmusic;
+    public int soundeffects;
     private static final int SETTINGS_SCREEN = 5;
-    private Button bgmusicplus;
-    private Button bgmusicminus;
-    private Button soundeffectsplus;
-    private Button soundeffectsminus;
-    private final static int VOLUME_STEP = 5;
+    private Label bgmusicplus;
+    private Label bgmusicminus;
+    private Label soundeffectsplus;
+    private Label soundeffectsminus;
+    
+    Sound SEsound;
+    Sound BGsound;
+    ChangeVolSE seCommand;
+    ChangeVolBG bgCommand;
     
     // Sid - Declared variables and instantiated objects for Finish Screen
     private static final int FINISH_SCREEN = 6;
     private static final int TRANSITION_SCREEN = 7;
     private static final int LEADERBOARD_SCREEN = 8;
     
-    // Sid - 
+    // Sid - Declaration for Transition Screen
     String playerAlias;
     JFrame f;
     
-    // Sid - 
+    // Sid - Declaration for Leaderboard
     LinkedHashMap<Integer, String> leaderBoard;
     LinkedHashMap<String, String> sortedleaderBoard;
     ArrayList<Integer> sortedKeys;
@@ -89,11 +93,11 @@ public class GameWorld extends World implements ISubject, IObserver
     private void prepare() {
         this.addObject((Actor)new Space(), 0, 200);
         this.addObject((Actor)new Space(), 600, 200);
-
+        
         this.bgmusic = 20;       // Changed to start muted because it is annoying.
         this.soundeffects = 20;  //
-        (this.introMusic).setVolume(bgmusic);
-        (this.gameMusic).setVolume(soundeffects);
+        (this.introMusic).setVolume(this.bgmusic);
+        (this.gameMusic).setVolume(this.soundeffects);
 
         this.addObject((Actor)(this.startScreen = new StartScreen()), 300, 200);
         this.addObject((Actor)(this.player = new Player()), 83, 215);
@@ -111,18 +115,22 @@ public class GameWorld extends World implements ISubject, IObserver
         this.player.setDebugObserver(this.debugObserver);
 
         // Sid - Initialization of buttons for Settings Screen
-        this.bgmusicplus = new Button("plus.png", this, "bgmusic", VOLUME_STEP);
-        this.bgmusicminus = new Button("minus.png", this, "bgmusic", -VOLUME_STEP);
-        this.soundeffectsplus = new Button("plus.png", this, "soundeffects", VOLUME_STEP);
-        this.soundeffectsminus = new Button("minus.png", this, "soundeffects", -VOLUME_STEP);
-
-        //Sid-
+        SEsound = SoundType.getSoundType("se", this);
+        BGsound = SoundType.getSoundType("bg", this);
+        seCommand = new ChangeVolSE(SEsound);
+        bgCommand = new ChangeVolBG(BGsound);
+        this.bgmusicplus = new Label("plus.png", this, "up", bgCommand);
+        this.bgmusicminus = new Label("minus.png", this, "down", bgCommand);
+        this.soundeffectsplus = new Label("plus.png", this, "up", seCommand);
+        this.soundeffectsminus = new Label("minus.png", this, "down", seCommand);
+        
+        //Sid - Initialization of Hash Maps for Leaderboard
         this.leaderBoard = new LinkedHashMap();
         this.sortedleaderBoard = new LinkedHashMap();
         this.lastpositionScore = 0;
         // over - Sid
         
-        final Class[] x = {LeaderboardScreen.class, Button.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, SettingsScreen.class, Moon.class};
+        final Class[] x = {LeaderboardScreen.class, Label.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, SettingsScreen.class, Moon.class};
         this.setPaintOrder(x);
     }
     
@@ -362,7 +370,7 @@ public class GameWorld extends World implements ISubject, IObserver
     // This method is used to navigate back to StartScreen
     public void backtoStart(){
         final List l = this.getObjects((Class)SettingsScreen.class);
-        final List l1 = this.getObjects((Class)Button.class);
+        final List l1 = this.getObjects((Class)Label.class);
         if (!l.isEmpty() && !l1.isEmpty()) {
             this.removeObjects((Collection)l);
             this.removeObjects((Collection)l1);
@@ -375,7 +383,7 @@ public class GameWorld extends World implements ISubject, IObserver
     
     // This method is used to add buttons to adjust Sound
     public void addButtons(){
-        final List l = this.getObjects((Class)Button.class);
+        final List l = this.getObjects((Class)Label.class);
         if (!l.isEmpty()) {
             this.removeObjects((Collection)l);
         }
@@ -383,10 +391,8 @@ public class GameWorld extends World implements ISubject, IObserver
         addObject(bgmusicplus, 500, 160);
         addObject(soundeffectsminus, 400, 230);
         addObject(soundeffectsplus, 500, 230);
-        GreenfootImage bgmusiclabel = new GreenfootImage(String.valueOf(bgmusic), 25, Color.WHITE, null, Color.WHITE);
-        GreenfootImage soundeffectslabel = new GreenfootImage(String.valueOf(soundeffects), 25, Color.WHITE, null, Color.WHITE);
-        Button bgmusiclevellabel = new Button(bgmusiclabel);
-        Button soundeffectslevellabel = new Button(soundeffectslabel);
+        Label bgmusiclevellabel = new Label("bg", this.bgmusic);
+        Label soundeffectslevellabel = new Label("se", this.soundeffects);
         addObject(bgmusiclevellabel, 450, 160);
         addObject(soundeffectslevellabel, 450, 230);
     }
