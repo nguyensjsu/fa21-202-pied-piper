@@ -38,20 +38,33 @@
 ## 11/10/2021
 
 ### What was done?
+- Everyone presented with their set of features/tweaks that can be implemented to the list.
+- Created a possible list of features we can add to the existing game.
+- Created a wireframe for the Leaderboard Screen.
 
 ### What is planned for next meet?
+- Research if String can be displayed on the screen, without having a static image of the text.
+- Provide priorities to the user stories and assign everyone a task.
 
 ### Was there any block?
+- N/A
 
 ---
 
 ## 11/13/2021
 
 ### What was done?
+- Prioritized user stories based on the time it will take to implement and the importance of the feature in the game.
+- John Created the Kanban board on our Github repo and assigned tickets to everyone.
+- I will be working on the Setting Screen.
+- Briefly discussed about possible design patterns that can be implemented.
 
 ### What is planned for next meet?
+- Show progress and code review.
+- Finalize Design Patterns to be implemented for each task.
 
 ### Was there any block?
+- N/A
 
 ---
 
