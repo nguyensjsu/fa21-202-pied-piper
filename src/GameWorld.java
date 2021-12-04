@@ -221,7 +221,12 @@ public class GameWorld extends World implements ISubject, IObserver
                 this.leaderBoard.put(playerScore, playerAlias);
                 this.sortedKeys = new ArrayList<Integer>(leaderBoard.keySet());
                 Collections.sort(sortedKeys, Collections.reverseOrder());
-                this.lastpositionScore = sortedKeys.get(sortedKeys.size()-1);
+                if(sortedKeys.size() < 10){
+                    this.lastpositionScore = 0;
+                }
+                else{
+                    this.lastpositionScore = sortedKeys.get(sortedKeys.size()-1);
+                }
                 for (int x : sortedKeys){
                     this.sortedleaderBoard.put(String.valueOf(x), leaderBoard.get(x));
                 }
