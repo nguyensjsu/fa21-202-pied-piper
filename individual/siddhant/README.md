@@ -71,40 +71,72 @@
 ## 11/17/2021
 
 ### What was done?
+- Created the Settings Screen as a new Actor class in Greenfoot, for now it just has a placeholder image.
+- Added navigation from Start Screen to Settings Screen (by pressing 'S' on the keyboard) and back again to the Start Screen (by pressing 'esc on the keyboard).
+- John created the Boss Level, right now he has just replicated the boss level and will later add more difficult UFO patterns to it.
+- Roger created the display for player using Observer design pattern.
+- Having the Feedback XP core value, I ensured the code review was done correctly and encouraged everyone to provide feedbak on each other's work.
 
 ### What is planned for next meet?
+- I plan to add a slider/buttons for the Settings Screen to adjust background music and sound effects.
 
 ### Was there any block?
+- Feedback from Faizali and Hashmita was not possible since they were not present in the project sync meet.
 
 ---
 
 ## 11/20/2021
 
 ### What was done?
+- I Incorporated buttons on the settings screen, created a Label class which inherits Actor class so that I could take advantage of the onClick method of the Actor.
+- Implemented Command design patterns to implement different functionalities of the buttons on the Settings Screen.
+- I Added Labels on the Settings Screen to display the current volume level of the background music and sound effects.
+- John added a Debugger Display on the screen using observer pattern.
+- Roger fixed the bugs with negative Lives being displayed.
+- Faiz mentioned about his work about the Leaderboard Screen (couldn't review the code).
+- Hashmita hasn't updated about her work yet.
 
 ### What is planned for next meet?
+- I will start working on a new task (Finish Screen).
+- Roger will star a new task (Display Player Score).
+- John will be continuing work on the Boss Level.
 
 ### Was there any block?
+- Couldn't implement a slider for adjusting volume, it was taking a lot of time and couldn't find good resources on how to implement a slider in greenfoot on the internet.
 
 ---
 
 ## 11/24/2021
 
 ### What was done?
+- I created the Finish Screen (this screen is displayed when the player finishes all the levels of the game).
+- Also created a placeholder for the Leaderboard Screen (placeholder will be replaced when Faizali's code is integrated to greenfoot).
+- Faizali provided working code for the Leaderboard Screen, though it was a console application code and needs to be integrated to greenfoot such that it displays the Leaderboard on the screen.
+- John introduced a mega UFO on the boss level.
+- Roger implemented the Player Score display using observer pattern.
 
 ### What is planned for next meet?
+- I will start working on the Player alias input (Transition Screen) and creating a Leaderboard HashMap (having player alias and score).
 
 ### Was there any block?
+- The finish screen created a bug which caused the game to restart automatically on the Leaderboard screen and causing negative lives and random generation of UFOs on the screen.
 
 ---
 
 ## 11/29/2021
 
 ### What was done?
+- I finished integrating Faizali's Leaderboard Screen code to the greenfoor project.
+- I also finished the Transition Screen (user can now input their player alias), it also displays alias name and score on the screen before Leaderboard Screen.
+- John updated the ReadMe, added UML diagrams and architecture diagram to the repo's ReadMe.
+- Roger worked on the burndown chart and started working on the user story video.
 
 ### What is planned for next meet?
+- Roger has to complete the User Story video.
+- I have to fix bugs causing restart of game on leaderboard screen and cauisng negative lives. (These were the major bugs found, we will focus on this more and minor bugs are ignored for now)
 
 ### Was there any block?
+- N/A
 
 ---
 
