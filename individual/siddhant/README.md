@@ -176,7 +176,7 @@
 
 ### What was done?
 - Complied the final presentation video by stitching all the videos together.
-- Updated the ReadMe (Added the individual participation and attached a link to the final presentation video).
+- Updated the ReadMe (Added my contribution summary and attached a link to the final presentation video).
 
 ### What is planned for next meet?
 - Present live demo in the class.
