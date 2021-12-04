@@ -95,12 +95,20 @@ A closer look at the underlying components within the Greenfoot environment is d
   * XP Core Value - Communication
 * Roger Kuo
   * Player Life count display - Observer Pattern
-  * Player Score and display - Observer Patterns
+  * Player Score and display - Observer Pattern
   * Wireframes
   * 1-min pitch video
   * Bug fixes and code reviews
 * Siddhant Satish Parma
-  * TODO - fill in
+  * Settings Screen - Command Pattern
+  * Transition Screen (for player alias input)
+  * Display Player Alias and Score on transition screen
+  * Display Leaderboard
+  * Class diagrams (Settings Screen and Leaderboard Screen)
+  * Compiled the presentation video
+  * Bug fixes
+  * Code reviews
+  * XP Core Value - Feedback
 * Faizali Mulla
   * TODO - fill in
 * Hashmitha Katta
