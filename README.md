@@ -2,13 +2,13 @@
 
 ## Team Members
 
-| Name                  | XP Core Value |
-| :---                  | :---          |
-| John Monsod           | Communication |
-| Roger Kuo             | Simplicity    |
-| Siddhant Satish Parma | Feedback      |
-| Faizali Mulla         | Courage       |
-| Hashmitha Katta       | Respect       |
+| Name                   | XP Core Value |
+| :---                   | :---          |
+| John Monsod            | Communication |
+| Roger Kuo              | Simplicity    |
+| Siddhant Satish Parmar | Feedback      |
+| Faizali Mulla          | Courage       |
+| Hashmitha Katta        | Respect       |
 
 ## Project Topic
 - Customized Space Shooter Arcade Game based on Greenfoot starter code [P-TYPE](https://www.greenfoot.org/scenarios/13388).
@@ -77,7 +77,7 @@ A closer look at the underlying components within the Greenfoot environment is d
 
 * [John Monsod](./individual/john/README.md)
 * [Roger Kuo](./individual/roger/README.md)
-* [Siddhant Satish Parma](./individual/siddhant/README.md)
+* [Siddhant Satish Parmar](./individual/siddhant/README.md)
 * [Faizali Mulla](./individual/faizali/README.md)
 * [Hashmitha Katta](./individual/hashmitha/README.md)
 
@@ -95,12 +95,20 @@ A closer look at the underlying components within the Greenfoot environment is d
   * XP Core Value - Communication
 * Roger Kuo
   * Player Life count display - Observer Pattern
-  * Player Score and display - Observer Patterns
+  * Player Score and display - Observer Pattern
   * Wireframes
   * 1-min pitch video
   * Bug fixes and code reviews
 * Siddhant Satish Parma
-  * TODO - fill in
+  * Settings Screen - Command Pattern
+  * Transition Screen (for player alias input)
+  * Display Player Alias and Score after game ends
+  * Display Leaderboard
+  * Class diagrams (Settings Screen and Leaderboard Screen)
+  * Compiled the presentation video
+  * Bug fixes
+  * Code reviews
+  * XP Core Value - Feedback
 * Faizali Mulla
   * TODO - fill in
 * Hashmitha Katta
@@ -120,6 +128,8 @@ A closer look at the underlying components within the Greenfoot environment is d
 - Link to your team's project Videos
   - Pitch User Story
     - [![qtype](https://img.youtube.com/vi/26ExLeiI-hE/0.jpg)](https://www.youtube.com/watch?v=26ExLeiI-hE)
+  - Project Presentation
+    - [![qtypepresentation](https://img.youtube.com/vi/umlClehfE3M/0.jpg)](https://www.youtube.com/watch?v=umlClehfE3M)
   - Project Demo
     - Give a demo of your teams working prototype on "Demo Day"
 
