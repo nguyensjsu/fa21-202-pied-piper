@@ -102,7 +102,7 @@ A closer look at the underlying components within the Greenfoot environment is d
 * Siddhant Satish Parma
   * Settings Screen - Command Pattern
   * Transition Screen (for player alias input)
-  * Display Player Alias and Score on transition screen
+  * Display Player Alias and Score after game ends
   * Display Leaderboard
   * Class diagrams (Settings Screen and Leaderboard Screen)
   * Compiled the presentation video
