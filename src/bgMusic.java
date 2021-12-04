@@ -9,17 +9,17 @@ public class bgMusic implements Sound {
     
     @Override
     public void volumeUp() {
-        if(gw.bgmusic < 100){
-            gw.bgmusic += 5;
-            (gw.introMusic).setVolume(gw.bgmusic);
+        if(gw.bgMusic < 100){
+            gw.bgMusic += 5;
+            (gw.introMusic).setVolume(gw.bgMusic);
         }
     }
 
     @Override
     public void volumeDown() {
-        if(gw.bgmusic > 0){
-            gw.bgmusic -= 5;
-            (gw.introMusic).setVolume(gw.bgmusic);
+        if(gw.bgMusic > 0){
+            gw.bgMusic -= 5;
+            (gw.introMusic).setVolume(gw.bgMusic);
         }
     }
 }

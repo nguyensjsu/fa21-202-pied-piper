@@ -9,17 +9,17 @@ public class soundEffects implements Sound {
     
     @Override
     public void volumeUp() {
-        if(gw.soundeffects < 100){
-            gw.soundeffects  += 5;
-            (gw.gameMusic).setVolume(gw.soundeffects);
+        if(gw.soundEffects < 100){
+            gw.soundEffects  += 5;
+            (gw.gameMusic).setVolume(gw.soundEffects);
         }
     }
 
     @Override
     public void volumeDown() {
-        if(gw.soundeffects  > 0){
-            gw.soundeffects  -= 5;
-            (gw.gameMusic).setVolume(gw.soundeffects);
+        if(gw.soundEffects  > 0){
+            gw.soundEffects  -= 5;
+            (gw.gameMusic).setVolume(gw.soundEffects);
         }
     }
 }

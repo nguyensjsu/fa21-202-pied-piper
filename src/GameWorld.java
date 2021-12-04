@@ -20,84 +20,78 @@ import java.util.*;
 
 public class GameWorld extends World implements ISubject, IObserver
 {
-    int x;
-    int y;
     int runningLevel;
     double d;
     Timer timer;
     Player player;
-    int playerLives;
-    int playerScore;
+    int gameState;
     StartScreen startScreen;
+
     private static final int RUNNING = 1;
     private static final int GAMEOVER_SCREEN = 2;
     private static final int START_SCREEN = 3;
     private static final int BETWEEN_LEVELS = 4;
-    int gameState;
-    GreenfootSound introMusic  = new GreenfootSound("sanxion.mp3");
-    GreenfootSound gameMusic = new GreenfootSound("delta.mp3");
-
-    // Roger - Added life observer
-    private LifeObserver lifeObserver;
-    private ScoreObserver scoreObserver;
-    private EnumMap<Observer, IObserver> obsMap = new EnumMap<>(Observer.class);
-
-    // John - track debug data within a game level
-    private IDebugObserver debugObserver;
-
-    // Sid - Initialized variables and instantiated objects for Settings Screen 
-    public int bgmusic;
-    public int soundeffects;
     private static final int SETTINGS_SCREEN = 5;
-    private Label bgmusicplus;
-    private Label bgmusicminus;
-    private Label soundeffectsplus;
-    private Label soundeffectsminus;
-    
-    Sound SEsound;
-    Sound BGsound;
-    ChangeVolSE seCommand;
-    ChangeVolBG bgCommand;
-    
-    // Sid - Declared variables and instantiated objects for Finish Screen
     private static final int FINISH_SCREEN = 6;
     private static final int TRANSITION_SCREEN = 7;
     private static final int LEADERBOARD_SCREEN = 8;
-    
-    // Sid - Declaration for Transition Screen
+
+    // lives and score tracking
+    int playerLives;
+    int playerScore;
+    private LifeObserver lifeObserver;
+    private ScoreObserver scoreObserver;
+    private enum Observer {
+        LIFE, SCORE
+    }
+    private EnumMap<Observer, IObserver> obsMap = new EnumMap<>(Observer.class);
+
+    // debug overlay mechanism
+    private IDebugObserver debugObserver;
+
+    // Sound Settings
+    public int bgMusic;
+    public int soundEffects;
+    private Label bgMusicPlus;
+    private Label bgMusicMinus;
+    private Label soundEffectsPlus;
+    private Label soundEffectsMinus;
+    Sound seSound;
+    Sound bgSound;
+    ChangeVolSE seCommand;
+    ChangeVolBG bgCommand;
+    GreenfootSound introMusic  = new GreenfootSound("sanxion.mp3");
+    GreenfootSound gameMusic = new GreenfootSound("delta.mp3");
+
+    // Transition Screen
     String playerAlias;
-    JFrame f;
-    
-    // Sid - Declaration for Leaderboard
+    JFrame jFrame;
+
+    // Leaderboard
     LinkedHashMap<Integer, String> leaderBoard;
     LinkedHashMap<String, String> sortedleaderBoard;
     ArrayList<Integer> sortedKeys;
     LeaderBoardIterator iter;
-    int lastpositionScore;
-    // over - Sid
+    int lastPositionScore;
 
-    private enum Observer {
-        LIFE, SCORE
-    }
-    
     public GameWorld() {
         super(600, 400, 1, false);
         this.runningLevel = -1;
         this.d = 0.0;
         this.playerLives = 3;
         this.playerScore = 0;
-        this.gameState = 3;
+        this.gameState = START_SCREEN;
         this.prepare();
     }
-    
+
     private void prepare() {
         this.addObject((Actor)new Space(), 0, 200);
         this.addObject((Actor)new Space(), 600, 200);
-        
-        this.bgmusic = 20;       // Changed to start muted because it is annoying.
-        this.soundeffects = 20;  //
-        (this.introMusic).setVolume(this.bgmusic);
-        (this.gameMusic).setVolume(this.soundeffects);
+
+        this.bgMusic = 20;
+        this.soundEffects = 20;
+        (this.introMusic).setVolume(this.bgMusic);
+        (this.gameMusic).setVolume(this.soundEffects);
 
         this.addObject((Actor)(this.startScreen = new StartScreen()), 300, 200);
         this.addObject((Actor)(this.player = new Player()), 83, 215);
@@ -115,53 +109,48 @@ public class GameWorld extends World implements ISubject, IObserver
         this.player.setDebugObserver(this.debugObserver);
 
         // Sid - Initialization of buttons for Settings Screen
-        SEsound = SoundType.getSoundType("se", this);
-        BGsound = SoundType.getSoundType("bg", this);
-        seCommand = new ChangeVolSE(SEsound);
-        bgCommand = new ChangeVolBG(BGsound);
-        this.bgmusicplus = new Label("plus.png", this, "up", bgCommand);
-        this.bgmusicminus = new Label("minus.png", this, "down", bgCommand);
-        this.soundeffectsplus = new Label("plus.png", this, "up", seCommand);
-        this.soundeffectsminus = new Label("minus.png", this, "down", seCommand);
-        
+        seSound = SoundType.getSoundType("se", this);
+        bgSound = SoundType.getSoundType("bg", this);
+        seCommand = new ChangeVolSE(seSound);
+        bgCommand = new ChangeVolBG(bgSound);
+        this.bgMusicPlus = new Label("plus.png", this, "up", bgCommand);
+        this.bgMusicMinus = new Label("minus.png", this, "down", bgCommand);
+        this.soundEffectsPlus = new Label("plus.png", this, "up", seCommand);
+        this.soundEffectsMinus = new Label("minus.png", this, "down", seCommand);
+
         //Sid - Initialization of Hash Maps for Leaderboard
         this.leaderBoard = new LinkedHashMap();
         this.sortedleaderBoard = new LinkedHashMap();
-        this.lastpositionScore = 0;
-        // over - Sid
-        
+        this.lastPositionScore = 0;
+
         final Class[] x = {LeaderboardScreen.class, Label.class, Explosion.class, Player.class, Laser.class, Ufo.class, StartScreen.class, SettingsScreen.class, Moon.class};
         this.setPaintOrder(x);
     }
     
     public void act() {
         switch (this.gameState) {
-            case 2: {
-                // GameOver Screen
-                
+            case GAMEOVER_SCREEN: {
+
                 final List l = this.getObjects((Class)GameOverScreen.class);
                 if (l.isEmpty()) {
-                    //this.timer.cancel();
-                    //this.resetGame();
-                    if(playerScore > this.lastpositionScore){
-                        this.gameState = 7;
+                    if (playerScore > this.lastPositionScore){
+                        this.gameState = TRANSITION_SCREEN;
                         break;
                     }
-                    else{
-                        this.gameState = 8;
+                    else {
+                        this.gameState = LEADERBOARD_SCREEN;
                         break;
                     }
                 }
                 break;
             }
-            case 3: {
-                //Start Screen
-                
+            case START_SCREEN: {
+
                 if (!this.introMusic.isPlaying()) {
                     this.introMusic.play();
                 }
                 if (Greenfoot.isKeyDown("space")) {
-                    this.gameState = 4;
+                    this.gameState = BETWEEN_LEVELS;
                     this.removeObject((Actor)this.startScreen);
                     this.showPlayer(false);
                     if (this.introMusic.isPlaying()) {
@@ -169,65 +158,63 @@ public class GameWorld extends World implements ISubject, IObserver
                     }
                     break;
                 }
-                if (Greenfoot.isKeyDown("s")){
-                    this.gameState = 5;
+                if (Greenfoot.isKeyDown("s")) {
+                    this.gameState = SETTINGS_SCREEN;
                     break;
                 }
                 break;
             }
-            case 4: {
+            case BETWEEN_LEVELS: {
                 this.startNewLevel();
-                this.gameState = 1;
+                this.gameState = RUNNING;
                 break;
             }
-            case 5: {
+            case SETTINGS_SCREEN: {
                 this.displaysettings();
                 this.addButtons();
-                if (Greenfoot.isKeyDown("escape")){
+                if (Greenfoot.isKeyDown("escape")) {
                     this.backtoStart();
                     break;
                 }
                 break;
             }
-            case 6:{
+            case FINISH_SCREEN: {
+
                 // Finish Screen (The Screen that is displayed when you pass all the levels)
-                
+
                 final List l = this.getObjects((Class)FinishScreen.class);
                 if (l.isEmpty()) {
-                    if(playerScore > this.lastpositionScore){
-                        this.gameState = 7;
+                    if(playerScore > this.lastPositionScore){
+                        this.gameState = TRANSITION_SCREEN;
                         break;
                     }
                     else{
-                        this.gameState = 8;
+                        this.gameState = LEADERBOARD_SCREEN;
                         break;
                     }
                 }
                 break;
             }
-            case 7:{
-                // Transition Screen
-                
-                this.playerAlias = JOptionPane.showInputDialog(f,"Enter your Name for the Leaderboard!"); 
-                this.playerAlias = this.playerAlias.substring(0,3).toUpperCase();
-                this.gameState = 8;
-                this.addObject((Actor)new TransitionScreen(playerAlias, playerScore), 300, 200);
+            case TRANSITION_SCREEN: {
 
+                this.playerAlias = JOptionPane.showInputDialog(jFrame,"Enter your Name for the Leaderboard!");
+                this.playerAlias = this.playerAlias.substring(0,3).toUpperCase();
+                this.gameState = LEADERBOARD_SCREEN;
+                this.addObject((Actor)new TransitionScreen(playerAlias, playerScore), 300, 200);
                 break;
             }
-            case 8:{
-                // Leaderboard Screen
-                
+            case LEADERBOARD_SCREEN: {
+
                 this.leaderBoard.put(playerScore, playerAlias);
                 this.sortedKeys = new ArrayList<Integer>(leaderBoard.keySet());
                 Collections.sort(sortedKeys, Collections.reverseOrder());
-                if(sortedKeys.size() < 10){
-                    this.lastpositionScore = 0;
+                if(sortedKeys.size() < 10) {
+                    this.lastPositionScore = 0;
                 }
-                else{
-                    this.lastpositionScore = sortedKeys.get(sortedKeys.size()-1);
+                else {
+                    this.lastPositionScore = sortedKeys.get(sortedKeys.size()-1);
                 }
-                for (int x : sortedKeys){
+                for (int x : sortedKeys) {
                     this.sortedleaderBoard.put(String.valueOf(x), leaderBoard.get(x));
                 }
                 this.iter = new LeaderBoardIterator(this.sortedleaderBoard);
@@ -238,10 +225,10 @@ public class GameWorld extends World implements ISubject, IObserver
                 this.showPlayer(false);
                 this.addObject((Actor)new LeaderboardScreen(iter), 300, 200);
                 this.sortedleaderBoard.clear();
-                if(Greenfoot.isKeyDown("escape")){
+                if(Greenfoot.isKeyDown("escape")) {
                     this.timer.cancel();
                     this.resetGame();
-                    this.gameState = 3;
+                    this.gameState = START_SCREEN;
                     break;
                 }
                 break;
@@ -252,19 +239,19 @@ public class GameWorld extends World implements ISubject, IObserver
     public void endGame() {
         this.showPlayer(false);
         this.debugObserver.clearData();
-        if(playerLives == 0){
+        if(playerLives == 0) {
             this.addObject((Actor)new GameOverScreen(), 300, 200);
-            this.gameState = 2;
+            this.gameState = GAMEOVER_SCREEN;
         }
-        else{
+        else {
             this.addObject((Actor)new FinishScreen(), 300, 200);
-            this.gameState = 6;
+            this.gameState = FINISH_SCREEN;
         }
         if (this.gameMusic.isPlaying()) {
             this.gameMusic.stop();
         }
         final GreenfootSound swoosh = new GreenfootSound("swoosh.mp3");
-        swoosh.setVolume(this.soundeffects);
+        swoosh.setVolume(this.soundEffects);
         swoosh.play();
     }
     
@@ -282,18 +269,14 @@ public class GameWorld extends World implements ISubject, IObserver
         if (this.runningLevel == 1) {
             this.runningLevel = 2;
             (this.timer = new Timer()).scheduleAtFixedRate(level2Task, 1000L, 600L);
-            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
         } else if (this.runningLevel == 2) {
             this.runningLevel = 3;
             (this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
-            //(this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
         }
         else {
             if (!this.gameMusic.isPlaying()) {
                 this.gameMusic.playLoop();
             }
-            // debug: start with boss level to test it immediately from game start
-            //(this.timer = new Timer()).scheduleAtFixedRate(bossLevel, 1000L, 600L);
             this.runningLevel = 1;
             (this.timer = new Timer()).scheduleAtFixedRate(level1Task, 1000L, 600L);
         }
@@ -320,7 +303,7 @@ public class GameWorld extends World implements ISubject, IObserver
     public void endLevel() {
         this.showPlayer(false);
         this.timer.cancel();
-        this.gameState = 4;
+        this.gameState = BETWEEN_LEVELS;
     }
     
     public void resetGame() {
@@ -328,7 +311,7 @@ public class GameWorld extends World implements ISubject, IObserver
         if (!l.isEmpty()) {
             this.removeObjects((Collection)l);
         }
-        this.gameState = 3;
+        this.gameState = START_SCREEN;
         this.addObject((Actor)this.startScreen, 300, 200);
         this.runningLevel = -1;
         this.playerLives = 3;
@@ -380,7 +363,7 @@ public class GameWorld extends World implements ISubject, IObserver
             this.removeObjects((Collection)l);
             this.removeObjects((Collection)l1);
         }
-        this.gameState = 3;
+        this.gameState = START_SCREEN;
         this.addObject((Actor)this.startScreen, 300, 200);
         this.runningLevel = -1;
         this.playerLives = 3;
@@ -392,14 +375,14 @@ public class GameWorld extends World implements ISubject, IObserver
         if (!l.isEmpty()) {
             this.removeObjects((Collection)l);
         }
-        addObject(bgmusicminus, 400, 160);
-        addObject(bgmusicplus, 500, 160);
-        addObject(soundeffectsminus, 400, 230);
-        addObject(soundeffectsplus, 500, 230);
-        Label bgmusiclevellabel = new Label("bg", this.bgmusic);
-        Label soundeffectslevellabel = new Label("se", this.soundeffects);
-        addObject(bgmusiclevellabel, 450, 160);
-        addObject(soundeffectslevellabel, 450, 230);
+        addObject(bgMusicMinus, 400, 160);
+        addObject(bgMusicPlus, 500, 160);
+        addObject(soundEffectsMinus, 400, 230);
+        addObject(soundEffectsPlus, 500, 230);
+        Label bgMusicLevelLabel = new Label("bg", this.bgMusic);
+        Label soundEffectsLevelLabel = new Label("se", this.soundEffects);
+        addObject(bgMusicLevelLabel, 450, 160);
+        addObject(soundEffectsLevelLabel, 450, 230);
     }
     
     // End of Methods for Settings Screen - Sid
@@ -428,7 +411,6 @@ public class GameWorld extends World implements ISubject, IObserver
 
     // As the Observer
     public void update() {
-        // Empty
     }
 
     public void update(int num) {
@@ -436,7 +418,6 @@ public class GameWorld extends World implements ISubject, IObserver
     }
 
     public void showState(final boolean b) {
-        // Empty
     }
     // END - ROGER - Observer Pattern
 }

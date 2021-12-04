@@ -8,6 +8,14 @@ public class BossLevel_Task extends BaseLevel {
         super(t);
     }
 
+    private static final int PHASE_1 = 1;
+    private static final int PHASE_2 = 2;
+    private static final int PHASE_3 = 3;
+    private static final int PHASE_4 = 4;
+    private static final int PHASE_5 = 5;
+    private static final int PHASE_6 = 6;
+    private static final int PHASE_7 = 7;
+
     @Override
     public void run() {
         if (this.onBreak) {
@@ -53,7 +61,7 @@ public class BossLevel_Task extends BaseLevel {
                     }
                     break;
                 }
-                case 1: {
+                case PHASE_1: {
                     updateDebugData();
                     ++this.counter;
                     changeAttackStrategy(new AttackPattern1());
@@ -61,7 +69,7 @@ public class BossLevel_Task extends BaseLevel {
                     this.onBreak = true;
                     break;
                 }
-                case 2: {
+                case PHASE_2: {
                     updateDebugData();
                     ++this.counter;
                     changeAttackStrategy(new AttackPattern2());
@@ -69,7 +77,7 @@ public class BossLevel_Task extends BaseLevel {
                     this.onBreak = true;
                     break;
                 }
-                case 3: {
+                case PHASE_3: {
                     updateDebugData();
                     ++this.counter;
                     changeAttackStrategy(new AttackPattern3());
@@ -77,7 +85,7 @@ public class BossLevel_Task extends BaseLevel {
                     this.onBreak = true;
                     break;
                 }
-                case 4: {
+                case PHASE_4: {
                     updateDebugData();
                     ++this.counter;
                     changeAttackStrategy(new AttackPattern4());
@@ -85,7 +93,7 @@ public class BossLevel_Task extends BaseLevel {
                     this.onBreak = true;
                     break;
                 }
-                case 5: {
+                case PHASE_5: {
                     updateDebugData();
                     ++this.counter;
                     changeAttackStrategy(new AttackPattern5());
@@ -93,7 +101,7 @@ public class BossLevel_Task extends BaseLevel {
                     this.onBreak = true;
                     break;
                 }
-                case 6: {
+                case PHASE_6: {
                     updateDebugData();
                     ++this.counter;
                     changeAttackStrategy(new AttackPattern6());
@@ -101,7 +109,7 @@ public class BossLevel_Task extends BaseLevel {
                     this.onBreak = true;
                     break;
                 }
-                case 7: {
+                case PHASE_7: {
                     ++this.counter;
                     final List l = this.theWorld.getObjects((Class)Ufo.class);
                     debugData.put("enemiesLeft", l.size());
