@@ -2,9 +2,11 @@ import java.util.*;
 import java.lang.*;
 
 class LeaderBoardIterator implements LeaderBoardNames{
+
     private int counter = 0;
     private LinkedHashMap<String, String> rawLb = new LinkedHashMap();
     private ArrayList<String> lb = new ArrayList<String>();
+
     LeaderBoardIterator(LinkedHashMap<String, String> inLb){
         rawLb = inLb;
         for(String k : rawLb.keySet()){
