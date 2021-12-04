@@ -77,7 +77,7 @@ A closer look at the underlying components within the Greenfoot environment is d
 
 * [John Monsod](./individual/john/README.md)
 * [Roger Kuo](./individual/roger/README.md)
-* [Siddhant Satish Parma](./individual/siddhant/README.md)
+* [Siddhant Satish Parmar](./individual/siddhant/README.md)
 * [Faizali Mulla](./individual/faizali/README.md)
 * [Hashmitha Katta](./individual/hashmitha/README.md)
 
