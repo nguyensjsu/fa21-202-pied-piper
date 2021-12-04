@@ -15,13 +15,30 @@
 ### 12/01/2021
 
 #### What I did
-* TBD
+* I created/updated final class diagrams for the debug observer, as well as the full source code.
+* I created videos for my parts of the slide deck.
 
 #### Blockers
-* TBD
+* None
 
 #### What I will do next
-* TBD
+* We will huddle before class to prepare one last time before demo.
+
+### 12/01/2021
+
+#### What I did
+* I worked with Sid to close out the final source code, including resolution of merge conflicts.
+* I worked with the team on the team presentation, organized each of our parts.
+* I created a video of the full gameplay sequence we plan to narrate during our demo.
+
+#### Blockers
+* None
+
+#### What I will do next
+* We decided to each record a separate video for each of our parts, which we would put together as one,
+so we will do that by tomorrow.
+* I will also update final documentation artifacts for the team README such as class diagrams, and also
+the slide deck.
 
 
 ### 12/01/2021
