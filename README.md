@@ -144,3 +144,7 @@ A closer look at the underlying components within the Greenfoot environment is d
 ### Score Implementation and Display Observer Class Diagram
 
 ![ScoreObserver](./uml/ScoreObserver.png)
+
+### Debug Overlay Observer Class Diagram
+
+![DebugObserver](./uml/DebugObserverClassDiagram.png)
