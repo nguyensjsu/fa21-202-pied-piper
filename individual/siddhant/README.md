@@ -128,6 +128,7 @@
 ### What was done?
 - I finished integrating Faizali's Leaderboard Screen code to the greenfoor project.
 - I also finished the Transition Screen (user can now input their player alias), it also displays alias name and score on the screen before Leaderboard Screen.
+- John finished his work on the Boss Level and implemented Strategy pattern to create more difficult UFO patterns.
 - John updated the ReadMe, added UML diagrams and architecture diagram to the repo's ReadMe.
 - Roger worked on the burndown chart and started working on the user story video.
 
@@ -143,9 +144,44 @@
 ## 12/01/2021
 
 ### What was done?
+- I fixed some of the bugs and pushed the final code to the repo.
+- Roger completed the User story video.
+- John and Roger are going over my Pull Request, so that it can be merged to the main branch.
+- We briefly discussed on how to go about the slide presentation
 
 ### What is planned for next meet?
+- Finalize the slide content and assign slide to each one to present.
 
 ### Was there any block?
+- Faizali was not present in the team sync meet, so couldn't assign him which slides to present.
+
+---
+
+## 12/02/2021
+
+### What was done?
+- Resolved code conflicts together, before merging it to the main branch.
+- Created the final slide presentation, went over the slides once.
+- Finalized that we will all individually record our parts of the slide presentation and then stitch it all together.
+
+### What is planned for next meet?
+- I have to stitch all the videos together provided by the teammates to create a final presention video.
+
+### Was there any block?
+- N/A
+
+---
+
+## 12/03/2021
+
+### What was done?
+- Complied the final presentation video by stitching all the videos together.
+- Updated the ReadMe (Added the individual participation and attached a link to the final presentation video).
+
+### What is planned for next meet?
+- Present live demo in the class.
+
+### Was there any block?
+- N/A
 
 ---
