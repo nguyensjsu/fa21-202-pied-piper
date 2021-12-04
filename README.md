@@ -2,13 +2,13 @@
 
 ## Team Members
 
-| Name                  | XP Core Value |
-| :---                  | :---          |
-| John Monsod           | Communication |
-| Roger Kuo             | Simplicity    |
-| Siddhant Satish Parma | Feedback      |
-| Faizali Mulla         | Courage       |
-| Hashmitha Katta       | Respect       |
+| Name                   | XP Core Value |
+| :---                   | :---          |
+| John Monsod            | Communication |
+| Roger Kuo              | Simplicity    |
+| Siddhant Satish Parmar | Feedback      |
+| Faizali Mulla          | Courage       |
+| Hashmitha Katta        | Respect       |
 
 ## Project Topic
 - Customized Space Shooter Arcade Game based on Greenfoot starter code [P-TYPE](https://www.greenfoot.org/scenarios/13388).
