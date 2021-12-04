@@ -120,6 +120,8 @@ A closer look at the underlying components within the Greenfoot environment is d
 - Link to your team's project Videos
   - Pitch User Story
     - [![qtype](https://img.youtube.com/vi/26ExLeiI-hE/0.jpg)](https://www.youtube.com/watch?v=26ExLeiI-hE)
+  - Project Presentation
+    - [![qtypepresentation](https://youtu.be/bG5Y0vwds6A/0.jpg)](https://youtu.be/bG5Y0vwds6A)
   - Project Demo
     - Give a demo of your teams working prototype on "Demo Day"
 
