@@ -96,6 +96,7 @@ A closer look at the underlying components within the Greenfoot environment is d
 * Roger Kuo
   * Player Life count display - Observer Pattern
   * Player Score and display - Observer Pattern
+  * Associated UML class diagrams
   * Wireframes
   * 1-min pitch video
   * Bug fixes and code reviews
@@ -128,10 +129,8 @@ A closer look at the underlying components within the Greenfoot environment is d
 - Link to your team's project Videos
   - Pitch User Story
     - [![qtype](https://img.youtube.com/vi/26ExLeiI-hE/0.jpg)](https://www.youtube.com/watch?v=26ExLeiI-hE)
-  - Project Presentation
+  - Project Presentation/Demo
     - [![qtypepresentation](https://img.youtube.com/vi/umlClehfE3M/0.jpg)](https://www.youtube.com/watch?v=umlClehfE3M)
-  - Project Demo
-    - Give a demo of your teams working prototype on "Demo Day"
 
 ## UML Diagrams
 
