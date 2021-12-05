@@ -113,7 +113,7 @@ A closer look at the underlying components within the Greenfoot environment is d
 * Faizali Mulla
   * TODO - fill in
 * Hashmitha Katta
-  * TODO - fill in
+  * UML diagrams
 
 ### Sprint Details
 
