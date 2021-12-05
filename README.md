@@ -158,3 +158,11 @@ A closer look at the underlying components within the Greenfoot environment is d
 ### Debug Overlay Observer Class Diagram
 
 ![DebugObserver](./uml/DebugObserverClassDiagram.png)
+
+### Leaderboard Iterator Class Diagram
+
+![Leader](./uml/LeaderBoardScreen_IteratorPattern.png)
+
+### Settings Command Class Diagram
+
+![Settings](./uml/SettingsScreen_CommandPattern.png)
