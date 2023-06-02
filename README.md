@@ -128,7 +128,7 @@ A closer look at the underlying components within the Greenfoot environment is d
 ## Project Videos
 - Link to your team's project Videos
   - Pitch User Story
-    - [![qtype](https://img.youtube.com/vi/26ExLeiI-hE/0.jpg)](https://www.youtube.com/watch?v=26ExLeiI-hE)
+    - [![qtype](https://i9.ytimg.com/vi_webp/OZZu1CEOS_w/mq1.webp?sqp=CMDf6aMG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgZChYMA8=&rs=AOn4CLBwOsF4JDW5sbiiiJjoOQu3sGLOmQ)](https://www.youtube.com/watch?v=26ExLeiI-hE)
   - Project Presentation/Demo
     - [![qtypepresentation](https://img.youtube.com/vi/umlClehfE3M/0.jpg)](https://www.youtube.com/watch?v=umlClehfE3M)
 
